@@ -460,7 +460,7 @@ body {
   font-display: swap;
   font-weight: normal;
   font-size: 14px;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: none;
   line-height: 1.5;
   text-rendering: geometricPrecision;
   flex: 1;
@@ -489,10 +489,6 @@ body {
 .content a {
   color: #383838;
   text-decoration: none;
-  background-image: linear-gradient(transparent, transparent 5px, #383838 5px, #383838);
-  background-position: bottom;
-  background-size: 100% 6px;
-  background-repeat: repeat-x;
 }
 .content a.icon {
   background: none;
@@ -611,10 +607,7 @@ body {
   color: #2bbc8a;
 }
 #header #nav ul a:hover {
-  background-image: linear-gradient(transparent, transparent 5px, #2bbc8a 5px, #2bbc8a);
-  background-position: bottom;
-  background-size: 100% 6px;
-  background-repeat: repeat-x;
+  border-bottom: 1.5px solid #2bbc8a;
 }
 #header #nav ul li {
   display: inline-block;
@@ -753,7 +746,7 @@ body {
   color: #2bbc8a;
 }
 #header-post #nav ul a:hover {
-  background-image: linear-gradient(transparent, transparent 5px, #2bbc8a 5px, #2bbc8a);
+  background-image: linear-gradient(transparent, transparent 10px, #2bbc8a 10px, #2bbc8a);
   background-position: bottom;
   background-size: 100% 6px;
   background-repeat: repeat-x;
@@ -1033,8 +1026,12 @@ body {
   color: #666;
   font-size: 14px;
 }
+.post-list .post-item a {
+  text-decoration: none;
+}
 .post-list .post-item a:hover {
   color: #2bbc8a;
+  border-bottom: 1.3px solid #2bbc8a;
 }
 @media (min-width: 480px) {
   .post-list .post-item {
@@ -1250,8 +1247,12 @@ article .content .caption {
   color: #666;
   font-size: 14px;
 }
-#archive .post-list .post-item span:hover {
-  text-decoration: #2bbc8a;
+#archive .post-list .post-item a {
+  text-decoration: none;
+}
+#archive .post-list .post-item a:hover {
+  color: #2bbc8a;
+  border-bottom: 1.3px solid #2bbc8a;
 }
 @media (min-width: 480px) {
   #archive .post-list .post-item {
@@ -1421,7 +1422,7 @@ article .content .caption {
   font-display: swap;
   font-weight: 400;
   font-size: 11.200000000000001px;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: none;
   line-height: 1.5;
   text-rendering: geometricPrecision;
   text-align: center;
@@ -1587,7 +1588,7 @@ pre {
   border: 1px dotted #666;
   border-radius: 4px;
   font-size: 13px;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: none;
   line-height: 22px;
   -webkit-border-radius: 4px;
 }
@@ -1609,7 +1610,7 @@ code {
   padding: 10px 15px;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: none;
   -webkit-border-radius: 4px;
 }
 .highlight figcaption {
