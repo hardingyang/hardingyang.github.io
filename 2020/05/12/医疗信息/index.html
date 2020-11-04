@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="医疗信息接诊模块接诊模块设计  数据库表： Patient表    列名 数据类型 是否可空 备注    patient_id int no 患者主键id   name varchar(20) no 患者姓名   age short no 患者年纪   phone char(11) no 患者手机   address varchar(100) no 患者住址   medical_history b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="医疗信息">
+<meta property="og:url" content="https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="Jenkooo">
+<meta property="og:description" content="医疗信息接诊模块接诊模块设计  数据库表： Patient表    列名 数据类型 是否可空 备注    patient_id int no 患者主键id   name varchar(20) no 患者姓名   age short no 患者年纪   phone char(11) no 患者手机   address varchar(100) no 患者住址   medical_history b">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/image-20200512090011721.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
+<meta property="article:published_time" content="2020-05-12T01:44:34.945Z">
+<meta property="article:modified_time" content="2020-05-14T00:49:00.610Z">
+<meta property="article:author" content="Jenkooo">
+<meta property="article:tag" content="部分设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/image-20200512090011721.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>医疗信息</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/05/12/Java%E5%9F%BA%E7%A1%80/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/05/11/%E5%AE%9E%E9%AA%8C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&text=医疗信息" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&is_video=false&description=医疗信息" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=医疗信息&body=Check out this article: https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&name=医疗信息&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&t=医疗信息" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#医疗信息接诊模块"><span class="toc-number">1.</span> <span class="toc-text">医疗信息接诊模块</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        医疗信息
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jenkooo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-05-12T01:44:34.945Z" itemprop="datePublished">2020-05-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/%E9%83%A8%E5%88%86%E8%AE%BE%E8%AE%A1/" rel="tag">部分设计</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="医疗信息接诊模块"><a href="#医疗信息接诊模块" class="headerlink" title="医疗信息接诊模块"></a>医疗信息接诊模块</h1><p>接诊模块设计</p>
+<p><img src="/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/image-20200512090011721.png" alt="image-20200512090011721"></p>
+<p>数据库表：</p>
+<p>Patient表</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>patient_id</td>
+<td>int</td>
+<td>no</td>
+<td>患者主键id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(20)</td>
+<td>no</td>
+<td>患者姓名</td>
+</tr>
+<tr>
+<td>age</td>
+<td>short</td>
+<td>no</td>
+<td>患者年纪</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>char(11)</td>
+<td>no</td>
+<td>患者手机</td>
+</tr>
+<tr>
+<td>address</td>
+<td>varchar(100)</td>
+<td>no</td>
+<td>患者住址</td>
+</tr>
+<tr>
+<td>medical_history</td>
+<td>bool</td>
+<td>no</td>
+<td>患者病史</td>
+</tr>
+<tr>
+<td>medical_info</td>
+<td>varchar(300)</td>
+<td>no</td>
+<td>患者患病信息</td>
+</tr>
+</tbody></table>
+<p>doctor表：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>doctor_id</td>
+<td>int</td>
+<td>no</td>
+<td>医生主键id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(20)</td>
+<td>no</td>
+<td>医生姓名</td>
+</tr>
+<tr>
+<td>age</td>
+<td>short</td>
+<td>no</td>
+<td>医生年纪</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>char(11)</td>
+<td>no</td>
+<td>医生手机</td>
+</tr>
+<tr>
+<td>address</td>
+<td>varchar(100)</td>
+<td>no</td>
+<td>医生住址</td>
+</tr>
+<tr>
+<td>degree</td>
+<td>int</td>
+<td>no</td>
+<td>医生级别</td>
+</tr>
+</tbody></table>
+<p>diagnose表：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>doctor_id</td>
+<td>int</td>
+<td>no</td>
+<td>医生主键id</td>
+</tr>
+<tr>
+<td>patient_id</td>
+<td>int</td>
+<td>no</td>
+<td>患者主键id</td>
+</tr>
+<tr>
+<td>diagnose_time</td>
+<td>datetime</td>
+<td>no</td>
+<td>诊断时间</td>
+</tr>
+<tr>
+<td>diagnose_info</td>
+<td>varchar(200)</td>
+<td>no</td>
+<td>诊断结果信息</td>
+</tr>
+</tbody></table>
+<p>hospital_bed表:</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bed_id</td>
+<td>int</td>
+<td>no</td>
+<td>病床主键id</td>
+</tr>
+<tr>
+<td>bed_is_null</td>
+<td>bool</td>
+<td>no</td>
+<td>病床是否有人住</td>
+</tr>
+</tbody></table>
+<p>bed_patient表：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bed_id</td>
+<td>int</td>
+<td>no</td>
+<td>病床主键id</td>
+</tr>
+<tr>
+<td>patient_id</td>
+<td>int</td>
+<td>no</td>
+<td>病人主键id</td>
+</tr>
+</tbody></table>
+<p>items表：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>item_name</td>
+<td>varchar(50)</td>
+<td>no</td>
+<td>收费项目名字</td>
+</tr>
+<tr>
+<td>item_price</td>
+<td>Decimal</td>
+<td>no</td>
+<td>项目价格</td>
+</tr>
+<tr>
+<td>item_info</td>
+<td>varchar(100)</td>
+<td>no</td>
+<td>项目信息说明</td>
+</tr>
+</tbody></table>
+<p>medicine表：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据类型</th>
+<th>是否可空</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>medicine_name</td>
+<td>varchar(50)</td>
+<td>no</td>
+<td>药物名称</td>
+</tr>
+<tr>
+<td>medicine_price</td>
+<td>decimal</td>
+<td>no</td>
+<td>药物价格</td>
+</tr>
+<tr>
+<td>medicine_number</td>
+<td>int</td>
+<td>no</td>
+<td>药物剩余个数</td>
+</tr>
+</tbody></table>
+<p>ER图：</p>
+<p>​     <img src="/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="未命名文件"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#医疗信息接诊模块"><span class="toc-number">1.</span> <span class="toc-text">医疗信息接诊模块</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&text=医疗信息" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&is_video=false&description=医疗信息" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=医疗信息&body=Check out this article: https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&title=医疗信息" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&name=医疗信息&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/05/12/%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF/&t=医疗信息" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2020
+    Jenkooo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3611d43b4ebdcc59c13f6739c83aac46";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

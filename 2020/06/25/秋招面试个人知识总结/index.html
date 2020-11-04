@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.Java1.1Java基础1.Java四个基本特性抽象、继承、封装、多态 追问： 什么是多态？多态分为运行时多态和编译时多态，是指同一个行为，有不同的表现形式的能力 继承是什么？Java中的继承是单继承的，子类可以继承到父类所有的属性和方法，包括私有的，但只是私有的无法在子类中获取到，但是拥有它。 2.Object类及其方法实现（尤其是equals() and hashCode()）Objec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="秋招面试个人知识总结">
+<meta property="og:url" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Jenkooo">
+<meta property="og:description" content="1.Java1.1Java基础1.Java四个基本特性抽象、继承、封装、多态 追问： 什么是多态？多态分为运行时多态和编译时多态，是指同一个行为，有不同的表现形式的能力 继承是什么？Java中的继承是单继承的，子类可以继承到父类所有的属性和方法，包括私有的，但只是私有的无法在子类中获取到，但是拥有它。 2.Object类及其方法实现（尤其是equals() and hashCode()）Objec">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625200032827.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204344063.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204353952.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204359620.png">
+<meta property="og:image" content="https://s0.lgstatic.com/i/image3/M01/62/7D/Cgq2xl4le9SAL6enAAGpXZi8Wcg079.jpg">
+<meta property="og:image" content="https://s0.lgstatic.com/i/image3/M01/62/7E/CgpOIF4lheGALDjnAAHFyzrSvqU109.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200920185228976.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703220908620.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703220942057.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703221110703.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703221622667.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200712163223479.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703183753945.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703190728339.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200704092922256.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200704093206525.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200906091430665.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200713162334001.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200713212826730.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101051520.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101108177.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101529881.png">
+<meta property="article:published_time" content="2020-06-25T07:57:45.649Z">
+<meta property="article:modified_time" content="2020-11-03T23:58:38.939Z">
+<meta property="article:author" content="Jenkooo">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="知识总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625200032827.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>秋招面试个人知识总结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/29/kettle/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/05/14/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&text=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&is_video=false&description=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=秋招面试个人知识总结&body=Check out this article: https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&name=秋招面试个人知识总结&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&t=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Java"><span class="toc-number">1.</span> <span class="toc-text">1.Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1Java基础"><span class="toc-number">1.1.</span> <span class="toc-text">1.1Java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java四个基本特性"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.Java四个基本特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Object类及其方法实现（尤其是equals-and-hashCode-）"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.Object类及其方法实现（尤其是equals() and hashCode()）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本数据类型与引用数据类型"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.基本数据类型与引用数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Exception-vs-Error"><span class="toc-number">1.1.4.</span> <span class="toc-text">3.Exception vs Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-finally-vs-final-vs-finalize"><span class="toc-number">1.1.5.</span> <span class="toc-text">4.finally vs final vs finalize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-重载-vs-重写"><span class="toc-number">1.1.6.</span> <span class="toc-text">5.重载 vs 重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口-vs-抽象类"><span class="toc-number">1.1.7.</span> <span class="toc-text">6.接口 vs 抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-深克隆-vs-浅克隆"><span class="toc-number">1.1.8.</span> <span class="toc-text">7.深克隆 vs 浅克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-String-vs-StringBuffer-vs-StringBuilder-（底层实现）"><span class="toc-number">1.1.9.</span> <span class="toc-text">8.String vs StringBuffer vs StringBuilder （底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-BIO-vs-NIO-vs-AIO"><span class="toc-number">1.1.10.</span> <span class="toc-text">9.BIO vs NIO vs AIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-反射与动态代理"><span class="toc-number">1.1.11.</span> <span class="toc-text">10.反射与动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11静态代理和动态代理"><span class="toc-number">1.1.12.</span> <span class="toc-text">11静态代理和动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-序列化与反序列化（底层实现）"><span class="toc-number">1.1.13.</span> <span class="toc-text">12.序列化与反序列化（底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-泛型的实现原理"><span class="toc-number">1.1.14.</span> <span class="toc-text">13.泛型的实现原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-集合框架-应用及源码分析"><span class="toc-number">1.2.</span> <span class="toc-text">1.2.集合框架 (应用及源码分析)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1集合框架的设计与所有的继承关系"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1集合框架的设计与所有的继承关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2Vector-vs-ArrayList-vs-LinkedList"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2Vector vs ArrayList vs LinkedList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3HashTable-vs-HashMap-vs-TreeMap-vs-ConcurrentHashMap"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3HashTable vs HashMap vs TreeMap vs ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4HashSet-vs-TreeSet"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4HashSet vs TreeSet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-HashSet的唯一性"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">Q.HashSet的唯一性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q：TressSet和HashSet是如何保证元素有序的？"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">Q：TressSet和HashSet是如何保证元素有序的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-如何保证TreeSet的唯一性："><span class="toc-number">1.2.4.3.</span> <span class="toc-text">Q:如何保证TreeSet的唯一性：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-HashMap链表长度到8变成红黑树，为什么是8"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5 HashMap链表长度到8变成红黑树，为什么是8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-线程安全的HashMap"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.线程安全的HashMap</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-多线程"><span class="toc-number">1.3.</span> <span class="toc-text">1.3.多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1线程的创建方式"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1线程的创建方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2多线程应用场景"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2多线程应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3线程状态与转换"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3线程状态与转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4线程安全与同步机制：volatile-vs-synchronized-vs-Lock-ReentrantLock"><span class="toc-number">1.3.4.</span> <span class="toc-text">1.3.4线程安全与同步机制：volatile vs synchronized vs Lock(ReentrantLock)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5volatile底层原理"><span class="toc-number">1.3.5.</span> <span class="toc-text">1.3.5volatile底层原理 ?????</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-6synchronized底层原理及其锁的升级与降级"><span class="toc-number">1.3.6.</span> <span class="toc-text">1.3.6synchronized底层原理及其锁的升级与降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-7Lock-ReentrantLock-底层原理"><span class="toc-number">1.3.7.</span> <span class="toc-text">1.3.7Lock(ReentrantLock)底层原理 ??</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-8ThreadLocal"><span class="toc-number">1.3.8.</span> <span class="toc-text">1.3.8ThreadLocal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-9线程通信"><span class="toc-number">1.3.9.</span> <span class="toc-text">1.3.9线程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-10线程池（底层实现）"><span class="toc-number">1.3.10.</span> <span class="toc-text">1.3.10线程池（底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-11死锁的出现场景、定位以及修复"><span class="toc-number">1.3.11.</span> <span class="toc-text">1.3.11死锁的出现场景、定位以及修复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-12CAS-与-Atomic-类型实现原理"><span class="toc-number">1.3.12.</span> <span class="toc-text">1.3.12CAS 与 Atomic*类型实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-13AQS：并发包基础技术"><span class="toc-number">1.3.13.</span> <span class="toc-text">1.3.13AQS：并发包基础技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-14Java并发包（java-util-concurrent及其子包）提供的并发工具类"><span class="toc-number">1.3.14.</span> <span class="toc-text">1.3.14Java并发包（java.util.concurrent及其子包）提供的并发工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-15阻塞队列"><span class="toc-number">1.3.15.</span> <span class="toc-text">1.3.15阻塞队列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-JVM"><span class="toc-number">1.4.</span> <span class="toc-text">4.JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1JVM运行时数据区域-vs-Java内存模型-（这2不一样！！！）"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1JVM运行时数据区域 vs Java内存模型 （这2不一样！！！）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.4.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2内存泄露、内存溢出以及栈溢出"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.2内存泄露、内存溢出以及栈溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3JVM类加载机制及其作用与对象的初始化"><span class="toc-number">1.4.4.</span> <span class="toc-text">1.4.3JVM类加载机制及其作用与对象的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4MinorGC和FullGC"><span class="toc-number">1.4.5.</span> <span class="toc-text">1.4.4MinorGC和FullGC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5垃圾回收算法"><span class="toc-number">1.4.6.</span> <span class="toc-text">1.4.5垃圾回收算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5垃圾回收器"><span class="toc-number">1.4.7.</span> <span class="toc-text">1.4.5垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-6常用JVM参数"><span class="toc-number">1.4.8.</span> <span class="toc-text">1.4.6常用JVM参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Spring"><span class="toc-number">2.</span> <span class="toc-text">2.Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1bean的生命周期"><span class="toc-number">2.1.</span> <span class="toc-text">2.1bean的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2Spring-IOC"><span class="toc-number">2.2.</span> <span class="toc-text">2.2Spring IOC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3循环依赖的产生和解决？？？？"><span class="toc-number">2.3.</span> <span class="toc-text">2.3循环依赖的产生和解决？？？？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4动态代理的原理"><span class="toc-number">2.4.</span> <span class="toc-text">2.4动态代理的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5BeanFactory和FactoryBean的区别"><span class="toc-number">2.5.</span> <span class="toc-text">2.5BeanFactory和FactoryBean的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6SpringBoot常用注解"><span class="toc-number">2.6.</span> <span class="toc-text">2.6SpringBoot常用注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7SpringBoot热部署的方式"><span class="toc-number">2.7.</span> <span class="toc-text">2.7SpringBoot热部署的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-Resource-和-Autowire对比"><span class="toc-number">2.8.</span> <span class="toc-text">2.8@Resource 和@Autowire对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-数据结构"><span class="toc-number">3.</span> <span class="toc-text">3.数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1各种树"><span class="toc-number">3.1.</span> <span class="toc-text">3.1各种树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1二叉树"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2满二叉树"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2满二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3完全二叉树"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3完全二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4平衡二叉树"><span class="toc-number">3.1.4.</span> <span class="toc-text">3.1.4平衡二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-5最优二叉树"><span class="toc-number">3.1.5.</span> <span class="toc-text">3.1.5最优二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-6二叉搜索树"><span class="toc-number">3.1.6.</span> <span class="toc-text">3.1.6二叉搜索树</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-经典算法"><span class="toc-number">4.</span> <span class="toc-text">4.经典算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1topk问题"><span class="toc-number">4.1.</span> <span class="toc-text">4.1topk问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2链表有环"><span class="toc-number">4.2.</span> <span class="toc-text">4.2链表有环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3三个数之和"><span class="toc-number">4.3.</span> <span class="toc-text">4.3三个数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4常见的排序算法"><span class="toc-number">4.4.</span> <span class="toc-text">4.4常见的排序算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-综合问题"><span class="toc-number">5.</span> <span class="toc-text">5.综合问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1单点登录"><span class="toc-number">5.1.</span> <span class="toc-text">5.1单点登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1同域下的单点登录"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.1同域下的单点登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2不同域下的单点登录"><span class="toc-number">5.1.2.</span> <span class="toc-text">1.2不同域下的单点登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-CSRF攻击"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 CSRF攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3Redis与Mysql数据不一致问题"><span class="toc-number">5.3.</span> <span class="toc-text">5.3Redis与Mysql数据不一致问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4集群和分布式的区别"><span class="toc-number">5.4.</span> <span class="toc-text">5.4集群和分布式的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5如何破坏单例模式"><span class="toc-number">5.5.</span> <span class="toc-text">5.5如何破坏单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6幂等性问题引发的思考"><span class="toc-number">5.6.</span> <span class="toc-text">5.6幂等性问题引发的思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7线上发生死锁怎么办？"><span class="toc-number">5.7.</span> <span class="toc-text">5.7线上发生死锁怎么办？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8Redis集群和Mysql集群对比"><span class="toc-number">5.8.</span> <span class="toc-text">5.8Redis集群和Mysql集群对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-计算机网络"><span class="toc-number">6.</span> <span class="toc-text">6.计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1http1-0-1-1-2-0"><span class="toc-number">6.1.</span> <span class="toc-text">6.1http1.0\1.1\2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2HTTP、HTTPS"><span class="toc-number">6.2.</span> <span class="toc-text">6.2HTTP、HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3Cookie和Session机制"><span class="toc-number">6.3.</span> <span class="toc-text">6.3Cookie和Session机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4状态码"><span class="toc-number">6.4.</span> <span class="toc-text">6.4状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5HTTP请求头"><span class="toc-number">6.5.</span> <span class="toc-text">6.5HTTP请求头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-6URL和URI的区别"><span class="toc-number">6.6.</span> <span class="toc-text">6.6URL和URI的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Mysql数据库"><span class="toc-number">7.</span> <span class="toc-text">7.Mysql数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1数据库SQl注入"><span class="toc-number">7.1.</span> <span class="toc-text">7.1数据库SQl注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2Limit原理"><span class="toc-number">7.2.</span> <span class="toc-text">7.2Limit原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3Redo日志"><span class="toc-number">7.3.</span> <span class="toc-text">7.3Redo日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4普通索引和唯一索引该如何选择？"><span class="toc-number">7.4.</span> <span class="toc-text">7.4普通索引和唯一索引该如何选择？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5如何给字符串添加索引比较优化？"><span class="toc-number">7.5.</span> <span class="toc-text">7.5如何给字符串添加索引比较优化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6DateTime和TimeStamp的区别"><span class="toc-number">7.6.</span> <span class="toc-text">7.6DateTime和TimeStamp的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-7脏读、重复读、幻读三种理解"><span class="toc-number">7.7.</span> <span class="toc-text">7.7脏读、重复读、幻读三种理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-8大体量数据加入数据库的解决方案"><span class="toc-number">7.8.</span> <span class="toc-text">7.8大体量数据加入数据库的解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-9Mysql性能分析"><span class="toc-number">7.9.</span> <span class="toc-text">7.9Mysql性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-10-数据库基本数据类型"><span class="toc-number">7.10.</span> <span class="toc-text">7.10 数据库基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-11为什么选择B-树作为索引的存储数据结构"><span class="toc-number">7.11.</span> <span class="toc-text">7.11为什么选择B+树作为索引的存储数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-12主从复制的复制是如何工作的"><span class="toc-number">7.12.</span> <span class="toc-text">7.12主从复制的复制是如何工作的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-13数据库的select死锁如何产生"><span class="toc-number">7.13.</span> <span class="toc-text">7.13数据库的select死锁如何产生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-14update时候是什么锁"><span class="toc-number">7.14.</span> <span class="toc-text">7.14update时候是什么锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-15InnoDB和MyISAM数据引擎对比"><span class="toc-number">7.15.</span> <span class="toc-text">7.15InnoDB和MyISAM数据引擎对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-KafKa"><span class="toc-number">8.</span> <span class="toc-text">8.KafKa</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-为什么使用Kafka？"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 为什么使用Kafka？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-操作系统"><span class="toc-number">9.</span> <span class="toc-text">9.操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1物理内存与虚拟内存的区别和联系"><span class="toc-number">9.1.</span> <span class="toc-text">9.1物理内存与虚拟内存的区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2物理内存地址和虚拟内存地址的区别？"><span class="toc-number">9.2.</span> <span class="toc-text">9.2物理内存地址和虚拟内存地址的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3产生死锁的四个条件"><span class="toc-number">9.3.</span> <span class="toc-text">9.3产生死锁的四个条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4处理死锁的策略"><span class="toc-number">9.4.</span> <span class="toc-text">9.4处理死锁的策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5避免死锁的方法"><span class="toc-number">9.5.</span> <span class="toc-text">9.5避免死锁的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-6用户态和内核态切换方式"><span class="toc-number">9.6.</span> <span class="toc-text">9.6用户态和内核态切换方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-Redis数据库"><span class="toc-number">10.</span> <span class="toc-text">10.Redis数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1集群原理"><span class="toc-number">10.1.</span> <span class="toc-text">10.1集群原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2字符串底层"><span class="toc-number">10.2.</span> <span class="toc-text">10.2字符串底层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-对比C字符串长度和SDS长度获取效率"><span class="toc-number">10.2.1.</span> <span class="toc-text">Q:对比C字符串长度和SDS长度获取效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-字符串缓存区溢出问题"><span class="toc-number">10.2.2.</span> <span class="toc-text">Q:字符串缓存区溢出问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-SDS如何避免重复的扩展字符串？"><span class="toc-number">10.2.3.</span> <span class="toc-text">Q:SDS如何避免重复的扩展字符串？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3list链表底层"><span class="toc-number">10.3.</span> <span class="toc-text">10.3list链表底层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4字典底层"><span class="toc-number">10.4.</span> <span class="toc-text">10.4字典底层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-微服务"><span class="toc-number">11.</span> <span class="toc-text">11.微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1限流器"><span class="toc-number">11.1.</span> <span class="toc-text">11.1限流器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-熔断器"><span class="toc-number">11.2.</span> <span class="toc-text">11.2 熔断器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3微服务概念"><span class="toc-number">11.3.</span> <span class="toc-text">11.3微服务概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4为什么需要玩网关"><span class="toc-number">11.4.</span> <span class="toc-text">11.4为什么需要玩网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-5微服务几个核心组件-用SpringCloud举例"><span class="toc-number">11.5.</span> <span class="toc-text">11.5微服务几个核心组件-用SpringCloud举例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-Mybatis"><span class="toc-number">12.</span> <span class="toc-text">12.Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mysql数据类型转到Java问题"><span class="toc-number">12.1.</span> <span class="toc-text">1.Mysql数据类型转到Java问题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        秋招面试个人知识总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jenkooo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-06-25T07:57:45.649Z" itemprop="datePublished">2020-06-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" rel="tag">知识总结</a>, <a class="tag-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="1-Java"><a href="#1-Java" class="headerlink" title="1.Java"></a>1.Java</h1><h2 id="1-1Java基础"><a href="#1-1Java基础" class="headerlink" title="1.1Java基础"></a>1.1Java基础</h2><h3 id="1-Java四个基本特性"><a href="#1-Java四个基本特性" class="headerlink" title="1.Java四个基本特性"></a>1.Java四个基本特性</h3><p>抽象、继承、封装、多态</p>
+<p><strong>追问：</strong></p>
+<p>什么是多态？多态分为运行时多态和编译时多态，是指同一个行为，有不同的表现形式的能力</p>
+<p>继承是什么？Java中的继承是单继承的，子类可以继承到父类所有的属性和方法，包括私有的，但只是私有的无法在子类中获取到，但是拥有它。</p>
+<h3 id="2-Object类及其方法实现（尤其是equals-and-hashCode-）"><a href="#2-Object类及其方法实现（尤其是equals-and-hashCode-）" class="headerlink" title="2.Object类及其方法实现（尤其是equals() and hashCode()）"></a>2.Object类及其方法实现（尤其是equals() and hashCode()）</h3><p>Object类是Java程序中，所有类的顶层父类，所有类都是继承于Object类，Object类下面有的方法有比如:equals(),hashCode(),wait(),clone(),toString(),notify(),notifyAll(),getClass()</p>
+<p>equals()内部就是==来判断</p>
+<p>hashCode()方法内部就是通过计算得到该对象的一个int型的hash值</p>
+<p>wait()\notify()\notifyAll()则是在多线程通信中要使用的方法，wait使用后，该线程会立即释放到当前锁资源，并进入阻塞状态，等待其他线程使用notify()、notifyAll()去唤醒它，</p>
+<h3 id="3-基本数据类型与引用数据类型"><a href="#3-基本数据类型与引用数据类型" class="headerlink" title="3.基本数据类型与引用数据类型"></a>3.基本数据类型与引用数据类型</h3><ul>
+<li>Java中基本数据类型分为4大类</li>
+</ul>
+<ol>
+<li>整型(byte 1字节 short 2字节 int 4字节 long 8字节)</li>
+<li>浮点型(float 4字节 double 8字节)</li>
+<li>布尔型(true false 1字节)</li>
+<li>字符型(char 2字节)</li>
+</ol>
+<p>基本数据类型都有对应的包装类，包括void关键字，也有对应的包装类，这里就牵扯到包装类的自动装箱的拆箱：</p>
+<p>自动装箱：基本数据类型自动转为对应的包装类</p>
+<p>自动拆箱：对应的包装类转化为对应的基本数据类型</p>
+<ul>
+<li>引用数据类型：对象和数组，具体占用多少字节，得算上对象头占的字节加上对象本身属性的方法占用的字节数</li>
+</ul>
+<p>追问：</p>
+<p>对象头在内存中占用多少字节?</p>
+<p>在一个32位系统中对象头占8字节，在64位系统中，占16字节</p>
+<h3 id="3-Exception-vs-Error"><a href="#3-Exception-vs-Error" class="headerlink" title="3.Exception vs Error"></a>3.Exception vs Error</h3><p>无论是Exception还是Error都是继承自Throwable类</p>
+<ul>
+<li><p>Error：是指Java运行时系统的内部错误或者资源耗尽错误，该错误除了告知用户外，只能尽可能的安全退出系统</p>
+</li>
+<li><p>Exception：异常，他的子类又分为CheckedException和RuntimeException，编译时异常和运行时异常</p>
+</li>
+</ul>
+<p>编译时异常：在编译期间发生的异常，常见的有FileNotFoundException、IOException、SQLException</p>
+<p>运行时异常：在系统运行期间出现的异常，常见的有ArrayIndexOutOfBundsException、NullPointException、ClassCastException、ArtithmeticException</p>
+<h3 id="4-finally-vs-final-vs-finalize"><a href="#4-finally-vs-final-vs-finalize" class="headerlink" title="4.finally vs final vs finalize"></a>4.finally vs final vs finalize</h3><ul>
+<li><p>finally：是try、cath异常捕获代码块中，最后必须要实现的一个代码块，它是一个代码块关键字</p>
+</li>
+<li><p>final：是一个关键字，它可以修饰属性、方法、类</p>
+<ul>
+<li>当修饰属性的时候，该属性则初始化后，就不可以再被更改其他值，比如当属性为基本数据类型的时候，则初始化后，该基本属性的值则不可以再被更改，如果属性是引用类型，则引用地址不可以再被更改，否则会出现错误，<strong>还有一个很重要的点，当final修饰属性的时候，可以防止属性逃窜，比如</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">byte a &#x3D; 1;</span><br><span class="line">byte b &#x3D; 2;</span><br><span class="line">byte c &#x3D; a+b;&#x2F;&#x2F;这里就会报错 因为a+b被转换成了int</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;如果是这样就不会</span><br><span class="line">final byte a &#x3D; 1;</span><br><span class="line">final byte b &#x3D; 2;</span><br><span class="line">byte c &#x3D; a + b;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>当修饰的是方法的时候，则该方法不可以再被重写</li>
+<li>当修饰的是类的时候，则该方法不可以再被继承，该类里面的所有方法也被默认为final</li>
+</ul>
+<ul>
+<li>finalize:是一个方法，回收对象的时候会触发其方法，用于最后对象与其他类发生关系，避免其回收，如果在这个方法里面，对象什么也不做，那么对象最后就会被垃圾回收器给回收</li>
+</ul>
+<h3 id="5-重载-vs-重写"><a href="#5-重载-vs-重写" class="headerlink" title="5.重载 vs 重写"></a>5.重载 vs 重写</h3><ul>
+<li>重写：对应的关系是，继承关系，只有在继承关系中，才会出现重写，重写是子类对父类的方法，进行重写编写，要求对应的方法名和形参和返回值都是与父类方法是一样的，唯一不同的是可以扩大访问修饰符的范围</li>
+<li>重载：是发生在一个类里面的，只要方法名相同，参数不同(参数的类型、顺序、个数)就可以发送重载，其次才是返回值可以不同和访问修饰符可以不同</li>
+</ul>
+<h3 id="6-接口-vs-抽象类"><a href="#6-接口-vs-抽象类" class="headerlink" title="6.接口 vs 抽象类"></a>6.接口 vs 抽象类</h3><ul>
+<li>抽象类：抽象类是类，所以它是可以被继承的，但是不能实例化对象，但它可以拥有构造器，然后他可以有抽象方法，也可以不拥有抽象方法</li>
+<li>接口：一个类可以实现多个接口，接口里面只有能抽象方法，没有构造器，属性只能是被fianl static修饰的属性，访问修饰符都是public</li>
+</ul>
+<h3 id="7-深克隆-vs-浅克隆"><a href="#7-深克隆-vs-浅克隆" class="headerlink" title="7.深克隆 vs 浅克隆"></a>7.深克隆 vs 浅克隆</h3><ul>
+<li>深克隆：对象本身以及包含的所有成员变量都会被复制</li>
+<li>浅克隆：对象只复制了它本身和其中包含的值类型的成员变量，引用类型的成员对象并没有复制</li>
+</ul>
+<h3 id="8-String-vs-StringBuffer-vs-StringBuilder-（底层实现）"><a href="#8-String-vs-StringBuffer-vs-StringBuilder-（底层实现）" class="headerlink" title="8.String vs StringBuffer vs StringBuilder （底层实现）"></a>8.String vs StringBuffer vs StringBuilder （底层实现）</h3><ul>
+<li>String：String是不可变的字符串类型，为什么是不可变的，因为他底层的char[]数组，也就是存储数据的部分，是被final修饰的，我们都知道了final的作用，被final修饰的数据，是不可变的，如果要变，只能重新创建一个，而不是指向原来的那个数据，所以他是不可变的</li>
+<li>StringBuffer：是线程安全的可变字符串，底层也是用char[] 来存实际的字符，但是他所有的方法都是synchronized修饰了，所以是线程安全的</li>
+<li>StringBuilder：是线程非安全的可变字符串，除了没有synchronized修饰方法外，其余都与StringBuffer相同</li>
+</ul>
+<p>追问：</p>
+<p>1.初始化一个StringBuilder，他默认初始化的字符[]数组长度是多少?</p>
+<p>默认创建的char[]长度是16;</p>
+<p>2.append()方法过程是什么？</p>
+<ol>
+<li>首先判断传进来的str不是null</li>
+<li>确保增加str后不会超过char[]数组大小，如果超过了，则进行扩容</li>
+<li>进行在char[]后添加str</li>
+</ol>
+<p>3.扩容机制是什么？</p>
+<p>创建一个新的char[]数组，长度是为原来数组的2倍+2，然后将原来的数组赋值到新数组内</p>
+<p>4.String、StringBuiilder下常用的方法?</p>
+<p>String：length(),charAt(),indexOf(),substring(),toCharArray(),</p>
+<p>StringBuilder():append(),insert(),reverse(),length()</p>
+<h3 id="9-BIO-vs-NIO-vs-AIO"><a href="#9-BIO-vs-NIO-vs-AIO" class="headerlink" title="9.BIO vs NIO vs AIO"></a>9.BIO vs NIO vs AIO</h3><ul>
+<li>BIO：blocking IO是一个同步阻塞I/O模式，数据的读取写入比赛阻塞在一个线程内等待完成任务后，才可以让其他线程才做，在并发强度不高的情况下，这个模式是可行的</li>
+<li>NIO：Non-Blocking IO 是一个同步非阻塞的IO模型，对应的是java.nio包，是一个NIO框架</li>
+<li>AIO：是NIO的升级，java1.7中引入，是一个异步非阻塞的IO模型</li>
+</ul>
+<h3 id="10-反射与动态代理"><a href="#10-反射与动态代理" class="headerlink" title="10.反射与动态代理"></a>10.反射与动态代理</h3><ul>
+<li><p>反射：反射是使Java语言从静态升级为半动态的一个特性，可以在程序运行期间获取到类的所有信息和动态的调用对象的方法，也可以在程序运行期间创建新的动态的创建对象</p>
+<ul>
+<li>动态创建对象的方法？</li>
+<li>1.Class对象的newInstance()方法，这种方法需要有Class对象对应的类默认的空构造器</li>
+<li>2.通过Class对象，获取指定的Constructor()构造器，然后通过指定构造器去创建特定的对象</li>
+</ul>
+<p>追问：反射的实现原理是什么？？</p>
+</li>
+</ul>
+<p>反射的优缺点：</p>
+<p>优点：可以在运行时动态的获取类的信息和调用对象的方法，提高代码的灵活度</p>
+<p>缺点：反射的实际就是告诉JVM该做什么，所以要比正常的Java代码运行慢，容易遇到性能瓶颈</p>
+<ul>
+<li>动态代理：动态代理的原理就是使用了反射来实现动态对类的方法增强</li>
+</ul>
+<p>追问：代理相比而继承对方法增强而言有什么优缺点？</p>
+<p>优点：继承对方法实现增强的话，如果要对所有方法增强，则要把所有方法都重写，而代理的话，只要实现一个方法，实现增强部分，再挂载到类的要增强的方法上即可，因为代理有前置增强，后置增强、环绕增强</p>
+<h3 id="11静态代理和动态代理"><a href="#11静态代理和动态代理" class="headerlink" title="11静态代理和动态代理"></a>11静态代理和动态代理</h3><p>静态代理：是在程序运行之前，由程序员或者其他特定工具自动生成的源代码，再对其编译</p>
+<p>动态代理：是在程序运行期间，通过反射机制来动态创建的代理</p>
+<h3 id="12-序列化与反序列化（底层实现）"><a href="#12-序列化与反序列化（底层实现）" class="headerlink" title="12.序列化与反序列化（底层实现）"></a>12.序列化与反序列化（底层实现）</h3><ul>
+<li>序列化的作用：首先JVM不可以永久的运行，那么我们需要停止维护一段时候，希望维护后，JVM的对象依旧存在，可是JVM停止后，对象也就不存在了，那么该怎么办呢？这就是序列化的作用，将JVM中的对象通过序列化存储在本地磁盘</li>
+<li>反序列化：则是将序列化后的对象，重新存储在JVM中</li>
+</ul>
+<h3 id="13-泛型的实现原理"><a href="#13-泛型的实现原理" class="headerlink" title="13.泛型的实现原理"></a>13.泛型的实现原理</h3><p>jdk1.5的新特性：Java泛型，就是类型参数化，而不用只写一个类型，可以通过参数的形式去改变属性的类型或者方法返回值的类型.</p>
+<p>泛型引入的好处:</p>
+<ul>
+<li>简单安全，不用再去进行类型检查，传入的是什么数据类型，就只能使用什么数据类型,自动进行类型转换</li>
+</ul>
+<p>要弄懂Java泛型的实现原理就需要去理解泛型擦除的概念，泛型擦除是在编译期实现的，也就是在java字节码文件中是不存在泛型的，全都被转化成了实实在在的数据类型.例如：List<Object> 但是在实际的字节码中是只有List的，JVM也值看到List，里面的参数化类型就会被限定的类型所替换掉</Object></p>
+<h2 id="1-2-集合框架-应用及源码分析"><a href="#1-2-集合框架-应用及源码分析" class="headerlink" title="1.2.集合框架 (应用及源码分析)"></a>1.2.集合框架 (应用及源码分析)</h2><h3 id="1-2-1集合框架的设计与所有的继承关系"><a href="#1-2-1集合框架的设计与所有的继承关系" class="headerlink" title="1.2.1集合框架的设计与所有的继承关系"></a>1.2.1集合框架的设计与所有的继承关系</h3><p>Collection：是List、Set、Queue的接口</p>
+<p>Map：是TreeMap、HashMap、HashTable的接口</p>
+<p>工具类是Arrays、和Collections</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625200032827.png" alt="image-20200625200032827"></p>
+<h3 id="1-2-2Vector-vs-ArrayList-vs-LinkedList"><a href="#1-2-2Vector-vs-ArrayList-vs-LinkedList" class="headerlink" title="1.2.2Vector vs ArrayList vs LinkedList"></a>1.2.2Vector vs ArrayList vs LinkedList</h3><ul>
+<li>Vector：是线程安全的ArrayList，里面的所有方法都带了synchronized关键字</li>
+<li>ArrayList：是可动态增加的数组，底层使用的就是数组，但是却可以动态的增加数组的长度等操作，它使用的场景是在线程安全的情况下，可以快速的查询和修改O(1)，但是增加和删除元素就比较慢O(n)</li>
+<li>LinkedList：底层使用的是双向链表,它使用的场景就是单线程情况下的增加和删除操作比较多的情况下就适合用LinkedList，因为它增加和删除操作是O(1),而查找操作的复杂度是O(n)</li>
+</ul>
+<h3 id="1-2-3HashTable-vs-HashMap-vs-TreeMap-vs-ConcurrentHashMap"><a href="#1-2-3HashTable-vs-HashMap-vs-TreeMap-vs-ConcurrentHashMap" class="headerlink" title="1.2.3HashTable vs HashMap vs TreeMap vs ConcurrentHashMap"></a>1.2.3HashTable vs HashMap vs TreeMap vs ConcurrentHashMap</h3><ul>
+<li><strong>HashMap</strong>：是一个key、value键值对的数据类型，在jdk1.7的时候使用的是数组+链表的形式，在jdk1.8的时候更改成了数组+链表+红黑树的数据结构。</li>
+</ul>
+<p>JDK1.7 HashMap原理</p>
+<p>HashMap map = new HashMap();</p>
+<p>首先在底层创建一个长度16的Entry[]  table；然后用put方法进行添加数据，这里就要详细说明一下添加的过程，首先拿到添加数据的key对象通过hashCode()方法得到一个哈希值，然后通过计算得到一个在Entry[]数组里面对应的索引下标位置，然后看在这下标位置是否已经有了数据，这里又要分两种情况，一个是有数据的，一种没有数据的，没有数据的则是直接将key对应的value值存在这个位置，如果有数据，就要先比较他们的哈希值是否相同，如果相同，则通过equals方法比较他们的内容是否相同，这里得说明一下，在Entry[]数组同一个下标位置，可以有多个数据，这里多个数据就是通过链表来存储的，比较要添加的key的哈希值就是与这个位置上链表的所有数据的哈希值进行比较，如果有相同的就是比较他们的内容，如果内容也相同，则替换掉那个已经存在的value，如果不相同，则添加这个value</p>
+<p><strong>扩容问题</strong>：在HashMap中有一个阈值0.75，如果超过了这个阈值，那么HashMap就会进行扩容，每次扩容都是原来Entry数组长度的两倍，然后将原来Entry[]数组里面的数据复制到新的Entry[]里面</p>
+<p><strong>追问：</strong></p>
+<p>hash冲撞的解决方法？</p>
+<ol>
+<li>也就是可以像HashMap中的方法一样用链表的形式解决hash冲撞</li>
+<li>再hash方法，进行再一次的hash运算</li>
+<li>建立公共溢出区：再建立一个溢出表，发生hash冲突的时候，就将hash冲突的元素放入溢出表</li>
+</ol>
+<p>​            </p>
+<p>为什么阈值是0.75？</p>
+<p>0.75是一个时间和空间成本的折中取值，比如当阈值为0.5的时候，那么一个数组里面只有一半的位置被使用到了之后就会被扩容，那么扩容机制就会被频繁触发，会很浪费时间，而如果阈值为1，虽然所有数组位置都可以被使用，但是hash冲突会非常频繁，当冲突频繁后，数组的负载就会增加，也就是一个位置上链表的长度就会变长，然后查询的速度就会变慢</p>
+<p>JDK1.8中的HashMap原理</p>
+<ol>
+<li><p>在1.8中存数据的类型改名为了Node，是一个内部类</p>
+</li>
+<li><p>在实例化对象的时候，并没有去创建一个长度为16的Node[]</p>
+</li>
+<li><p>只有首次put方式的时候，才去创建一个长度为16的Node[]数组，这样可以达到懒加载的效果</p>
+</li>
+<li><p>jdk7中只有数组+链表，在jdk8中有数组+链表+红黑树</p>
+<ol>
+<li>当数组的某个索引位置上的数据用链表存储的时候，长度超过了8，并且Node[]的长度超过了64的时候，那么索引位置上存储的数据，就会更改为用红黑树来存储，因为索引位置上的数据存储多了之后，依次比较的数据速度就会下降，那么用红黑树，彼此比较就会减少一半的比较数目，提高了性能</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><p>HashTable：是一个线程安全的HashMap，它的功能与HashMap非常相似</p>
+</li>
+<li><p>TreeMap：TreeMap实现了SortedMap接口，能够按照它保存的数据根据键来排序，默认是升序的</p>
+</li>
+<li><p>ConcurrentHashMap ：是一个线程安全的HashMap，它的并发效率比HashTable高，为什么呢？</p>
+</li>
+</ul>
+<p>追问：</p>
+<p>在JDK1.8之前，HashMap在链表上使用的是头插法还是尾插法？会导致什么？具体过程？</p>
+<p>在Jdk1.8之前，使用的是头插法，在多线程的情况下，会产生死循环，具体过程是：    </p>
+<p>ConcurrentHashMap ：也分为jdk1.7和jdk1.8版本</p>
+<p>jdk1.7中</p>
+<p>数组（Segment） + 数组（HashEntry） + 链表（HashEntry节点）</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204344063.png" alt="image-20200625204344063"></p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204353952.png" alt="image-20200625204353952"></p>
+<p>jdk1.8</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200625204359620.png" alt="image-20200625204359620"></p>
+<h3 id="1-2-4HashSet-vs-TreeSet"><a href="#1-2-4HashSet-vs-TreeSet" class="headerlink" title="1.2.4HashSet vs TreeSet"></a>1.2.4HashSet vs TreeSet</h3><ul>
+<li>HashSet：是基于HashMap实现的，里面的元素是唯一的，线程不安全如果对象的hashCode值不同，则不用判断equals方法，就直接存到HashSet中。如果对象的hashCode值相同，需要用equals方法进行比较，如果结果为true，则视为相同元素，不存，如果结果为false，视为不同元素，进行存储。</li>
+<li>TreeSet：里面的元素是有序的，线程不安全，不允许放入null，TreeSet底层数据结构是红黑树</li>
+</ul>
+<h4 id="Q-HashSet的唯一性"><a href="#Q-HashSet的唯一性" class="headerlink" title="Q.HashSet的唯一性"></a>Q.HashSet的唯一性</h4><p>HashSet的add()实际使用的就是HashMap里面的putVal()放来，将HashSet里面的key取出来，与要放入的对象一一做比较，比较hashcode值是否相同，如果相同再调用两个 的equals方法比较，也是true，则有set中有相同的，就不添加</p>
+<h4 id="Q：TressSet和HashSet是如何保证元素有序的？"><a href="#Q：TressSet和HashSet是如何保证元素有序的？" class="headerlink" title="Q：TressSet和HashSet是如何保证元素有序的？"></a>Q：TressSet和HashSet是如何保证元素有序的？</h4><p>1.首先是像存储的是Integer或者String类型的时候，是可以直接进行比较的，因为这个类是实现了compareTo方法，有默认的时候方式，当然也可以重写compareTo方法，让它按照我们想要的排序方式排序</p>
+<p>2.第二种就是自定义的类，需要实现compareTo接口，然后手动的时候compareTo方法，来达到对自定义类的比较方法，才能在TreeSet中排序</p>
+<h4 id="Q-如何保证TreeSet的唯一性："><a href="#Q-如何保证TreeSet的唯一性：" class="headerlink" title="Q:如何保证TreeSet的唯一性："></a>Q:如何保证TreeSet的唯一性：</h4><p>唯一：根据返回值是否为0，在add方法中，底层是根据实现Comparable的方式来实现的唯一性，通过compare(Object o)的返回值是否为0来判断是否为同一元素。</p>
+<p>compare() == 0，元素不入集合。<br>compare() &gt; 0 ,元素入右子树。<br>compare() &lt; 0,元素入左子树。</p>
+<p>Q：这里引入comparable接口和comparator接口对比：</p>
+<p>1、Comparable 更像是自然排序，里面只有方法compareTo，是表示该类支持排序</p>
+<p>2、Comparator 更像是定制排序，里面有两个方法compareTo和equals，表示该类是一个比较器</p>
+<h3 id="1-2-5-HashMap链表长度到8变成红黑树，为什么是8"><a href="#1-2-5-HashMap链表长度到8变成红黑树，为什么是8" class="headerlink" title="1.2.5 HashMap链表长度到8变成红黑树，为什么是8"></a>1.2.5 HashMap链表长度到8变成红黑树，为什么是8</h3><p>事实上，链表长度超过 8 就转为红黑树的设计，更多的是为了防止用户自己实现了不好的哈希算法时导致链表过长，从而导致查询效率低，而此时转为红黑树更多的是一种保底策略，用来保证极端情况下查询的效率。</p>
+<p>通常如果 hash 算法正常的话，那么链表的长度也不会很长，那么红黑树也不会带来明显的查询时间上的优势，反而会增加空间负担。所以通常情况下，并没有必要转为红黑树，所以就选择了概率非常小，小于千万分之一概率，也就是长度为 8 的概率，把长度 8 作为转化的默认阈值。</p>
+<h3 id="1-2-线程安全的HashMap"><a href="#1-2-线程安全的HashMap" class="headerlink" title="1.2.线程安全的HashMap"></a>1.2.线程安全的HashMap</h3><p>一共有4中</p>
+<p>1.HashTable直接在各个方法上加上synchronized</p>
+<p>2.Collections.synchronizedMap(map)通过装饰者模式对hashMap进行封装，对每个方法加上synchronized，保证了线程安全，但是也是阻塞的</p>
+<p>3.CopyOnWriteMap 一个读写分离的HashMap，当对容器进行增加，删除，修改操作时，不是直接操作容器，而是先将当前容器copy，复制出一个新的容器，再对新容器进行操作，操作完成后再将指针指向这个新容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读（CopyOnWriteArrayList底层使用数组实现，而该数组是被volatile修饰），而不用对其进行加锁，当然写的时候是需要加锁的（这里采用了lock加锁），否则可能copy出了N个副本</p>
+<p>4.<strong>ConcurrentHashMap</strong>，是真正意义上的并发HashMap，可以多个线程同时操作读写，因为它是被分为Segement段，在每个Segement下都有一个HashMap，所以它会进行两次hash运算得到索引，首先是得到在哪一个segement下，默认是16个segment，然后进入这个segment后，再进行一个hash，得到对应的数组内的下标，再将value存入该位子</p>
+<h2 id="1-3-多线程"><a href="#1-3-多线程" class="headerlink" title="1.3.多线程"></a>1.3.多线程</h2><h3 id="1-3-1线程的创建方式"><a href="#1-3-1线程的创建方式" class="headerlink" title="1.3.1线程的创建方式"></a>1.3.1线程的创建方式</h3><p>想到可能有四种或者更多，但是实际都是源于Runnable接口</p>
+<ol>
+<li>实现Runnable接口</li>
+<li>继承Thread类</li>
+<li>线程池</li>
+<li>Callable接口</li>
+</ol>
+<h3 id="1-3-2多线程应用场景"><a href="#1-3-2多线程应用场景" class="headerlink" title="1.3.2多线程应用场景"></a>1.3.2多线程应用场景</h3><p>在单线程已经达到了瓶颈之后，再尝试使用多线程，如果一个任务可以拆分为几个部分，分为进行，他们就可以考虑使用多线程，而在实际中，如果单线程能够做好这件事情，那么我们应该避免使用多线程，因为多线程会带来自身的安全问题。</p>
+<p>什么是多线程的安全问题？</p>
+<p>比如数据的同步问题，临界区资源的争抢</p>
+<h3 id="1-3-3线程状态与转换"><a href="#1-3-3线程状态与转换" class="headerlink" title="1.3.3线程状态与转换"></a>1.3.3线程状态与转换</h3><p>在Java中，线程的状态6个</p>
+<ol>
+<li>New(新创建)，即仅仅new了一个线程，但还为start</li>
+<li>Runnable(可运行的)，在Java中可运行状态包括了就绪状态和运行状态</li>
+<li>Blocked(被阻塞)，多个线程去争抢一把锁，未抢到的线程则被阻塞进入这个状态，syn的锁</li>
+<li>Waiting(等待)，未抢到Lock的锁，则进入这里</li>
+<li>Timed Waiting(计时等待)，有时间限制的waiting</li>
+<li>Terminated(结束) ，run()方法完成，则正常退出，或者线程存在异常而没有捕获，则异常退出</li>
+</ol>
+<h3 id="1-3-4线程安全与同步机制：volatile-vs-synchronized-vs-Lock-ReentrantLock"><a href="#1-3-4线程安全与同步机制：volatile-vs-synchronized-vs-Lock-ReentrantLock" class="headerlink" title="1.3.4线程安全与同步机制：volatile vs synchronized vs Lock(ReentrantLock)"></a>1.3.4线程安全与同步机制：volatile vs synchronized vs Lock(ReentrantLock)</h3><ul>
+<li>Volatile：是一种轻量的解决线程同步的机制，它是用来保证变量的可见性和有序性的，但不保证变量的原子性，可见性的保证是被volatile修饰后，其他线程也知道了，该线程是很容易被修改的，所以不应该从工作内存中读取该数据，而是从主存中读取该数据，一般的读取数据的方式是，第一次从主存中获取，然后缓存在自己的工作内存中，之后要是修改了也是先修改工作内存的数据，再刷新回主内存。而被volatile修饰后，所以的操作都是直接操纵主内存</li>
+<li>synchronized：是JVM级别的锁机制，底层是使用了Monitor充当锁</li>
+<li>Lock：是JDK级别的锁机制，它比syn要强大，它可以是公平锁，也可以是重入锁，它的控制更加灵活</li>
+</ul>
+<h3 id="1-3-5volatile底层原理"><a href="#1-3-5volatile底层原理" class="headerlink" title="1.3.5volatile底层原理 ?????"></a>1.3.5volatile底层原理 ?????</h3><h3 id="1-3-6synchronized底层原理及其锁的升级与降级"><a href="#1-3-6synchronized底层原理及其锁的升级与降级" class="headerlink" title="1.3.6synchronized底层原理及其锁的升级与降级"></a>1.3.6synchronized底层原理及其锁的升级与降级</h3><ul>
+<li>在syn修饰代码块和修饰方法时候是不一样的</li>
+<li>修饰代码块的时候：在底层使用的就是Monitor，当一个线程争抢到Monitor后，该线程就是Monitor的持有者，则monitor的计算器+1，一个Monitorenter对应两个monitorexit，一个是正常突出的，一个是异常退出的</li>
+<li>当修饰方法的时候：进入该方法的时候会判断ACC_SYNCHRONIZED标志，方法有该标志，则需要获取Monitor锁，才可以进入方法</li>
+</ul>
+<p>锁升级的过程为：无锁状态-&gt;偏向锁-&gt;轻量锁-&gt;重量锁</p>
+<p>偏向锁：是指只有一个线程去拿到这个锁的时候，这个锁对象头部记录下这个线程，然后下次如果还是这个线程拿到，就可以直接进入</p>
+<p>轻量锁：当有好几个线程开始争抢锁后，偏向锁就无用了，那么正在等待锁的线程，就会发生自旋在原地尝试获取锁资源，并没有放弃CPU的使用权，也没有立即进入阻塞状态</p>
+<h3 id="1-3-7Lock-ReentrantLock-底层原理"><a href="#1-3-7Lock-ReentrantLock-底层原理" class="headerlink" title="1.3.7Lock(ReentrantLock)底层原理 ??"></a>1.3.7Lock(ReentrantLock)底层原理 ??</h3><h3 id="1-3-8ThreadLocal"><a href="#1-3-8ThreadLocal" class="headerlink" title="1.3.8ThreadLocal"></a>1.3.8ThreadLocal</h3><p>ThreadLocal 适合用在哪些实际生产的场景中？</p>
+<p>场景1，ThreadLocal 用作保存每个线程独享的对象，为每个线程都创建一个副本，这样每个线程都可以修改自己所拥有的副本, 而不会影响其他线程的副本，确保了线程安全。</p>
+<p>场景2，ThreadLocal 用作每个线程内需要独立保存信息，以便供其他方法更方便地获取该信息的场景。每个线程获取到的信息可能都是不一样的，前面执行的方法保存了信息后，后续方法可以通过 ThreadLocal 直接获取到，避免了传参，类似于全局变量的概念</p>
+<h3 id="1-3-9线程通信"><a href="#1-3-9线程通信" class="headerlink" title="1.3.9线程通信"></a>1.3.9线程通信</h3><ol>
+<li>wait() 和notify()方法保证两个线程的通信–》对应模型是生产者消费者模型</li>
+<li>join()方法，是线程阻塞，等待需要的线程先完成任务</li>
+</ol>
+<h3 id="1-3-10线程池（底层实现）"><a href="#1-3-10线程池（底层实现）" class="headerlink" title="1.3.10线程池（底层实现）"></a>1.3.10线程池（底层实现）</h3><p>常见的线程池工厂方法</p>
+<ul>
+<li>单例线程池</li>
+<li>缓存线程池(线程数可动态增加和减少)</li>
+<li>固定线程数线程池</li>
+<li>周期运行线程池</li>
+</ul>
+<p>他们都是通过原始创建线程的方法，封装而来，原始创建线程的方法有7个参数</p>
+<ol>
+<li>核心线程数</li>
+<li>最大线程数</li>
+<li>多余线程数空闲时间存活时间</li>
+<li>时间单位</li>
+<li>任务队列</li>
+<li>线程工厂</li>
+<li>拒绝策略</li>
+</ol>
+<h3 id="1-3-11死锁的出现场景、定位以及修复"><a href="#1-3-11死锁的出现场景、定位以及修复" class="headerlink" title="1.3.11死锁的出现场景、定位以及修复"></a>1.3.11死锁的出现场景、定位以及修复</h3><h3 id="1-3-12CAS-与-Atomic-类型实现原理"><a href="#1-3-12CAS-与-Atomic-类型实现原理" class="headerlink" title="1.3.12CAS 与 Atomic*类型实现原理"></a>1.3.12CAS 与 Atomic*类型实现原理</h3><h3 id="1-3-13AQS：并发包基础技术"><a href="#1-3-13AQS：并发包基础技术" class="headerlink" title="1.3.13AQS：并发包基础技术"></a>1.3.13AQS：并发包基础技术</h3><p>J</p>
+<h3 id="1-3-14Java并发包（java-util-concurrent及其子包）提供的并发工具类"><a href="#1-3-14Java并发包（java-util-concurrent及其子包）提供的并发工具类" class="headerlink" title="1.3.14Java并发包（java.util.concurrent及其子包）提供的并发工具类"></a>1.3.14Java并发包（java.util.concurrent及其子包）提供的并发工具类</h3><ul>
+<li>比synchronized更加高级的各种同步结构，如：Semaphore，CyclicBarrier， CountDownLatch </li>
+<li>各种线程安全的容器（主要有四类：Queue,List,Set，Map），如：ConcurrentHashMap,ConcurrentSkipListMap,CopyOnWriteArrayList </li>
+<li>各种并发队列的实现，如各种BlockingQueue的实现（ArrayBlockingQueue, LinkedBlockingQueue, SynchorousQueue, PriorityBlockingQueue,DelayQueue,LinkedTranferQueue）等。 </li>
+<li>Executor框架与线程池</li>
+</ul>
+<h3 id="1-3-15阻塞队列"><a href="#1-3-15阻塞队列" class="headerlink" title="1.3.15阻塞队列"></a>1.3.15阻塞队列</h3><p>BlockingQueue继承于Queue接口，是队列的一种，它是线程安全的，它本身又起来到隔离的作用，解耦生产者和消费者之间的关系</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BlockingQueue</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt;</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://s0.lgstatic.com/i/image3/M01/62/7D/Cgq2xl4le9SAL6enAAGpXZi8Wcg079.jpg" alt="img"></p>
+<p>阻塞队列特点：最重要的特点就是阻塞，所以它有take和put两个方法，来实现阻塞</p>
+<p><strong>take 方法</strong><br>take 方法的功能是获取并移除队列的头结点，通常在队列里有数据的时候是可以正常移除的。可是一旦执行 take 方法的时候，队列里无数据，则阻塞，直到队列里有数据。一旦队列里有数据了，就会立刻解除阻塞状态，并且取到数据。</p>
+<p><strong>put 方法</strong><br>put 方法插入元素时，如果队列没有满，那就和普通的插入一样是正常的插入，但是如果队列已满，那么就无法继续插入，则阻塞，直到队列里有了空闲空间。如果后续队列有了空闲空间，比如消费者消费了一个元素，那么此时队列就会解除阻塞状态，并把需要添加的数据添加到队列中。</p>
+<p><strong>是否有界（容量有多大）</strong><br>此外，阻塞队列还有一个非常重要的属性，那就是容量的大小，分为有界和无界两种。</p>
+<p>无界队列意味着里面可以容纳非常多的元素，例如 LinkedBlockingQueue 的上限是 Integer.MAX_VALUE，约为 2 的 31 次方，是非常大的一个数，可以近似认为是无限容量，因为我们几乎无法把这个容量装满。</p>
+<p>但是有的阻塞队列是有界的，例如 ArrayBlockingQueue 如果容量满了，也不会扩容，所以一旦满了就无法再往里放数据了。</p>
+<p>阻塞队列还有其他的方法：</p>
+<ul>
+<li>抛出异常：add、remove、element(返回头结点，但是不删除头结点)</li>
+<li>返回结果但不抛出异常：offer（添加成功就是true，无法添加就是false）、poll(有东西则取出，没有东西则返回null)、peek</li>
+<li>阻塞：put、take</li>
+</ul>
+<p><img src="https://s0.lgstatic.com/i/image3/M01/62/7E/CgpOIF4lheGALDjnAAHFyzrSvqU109.png" alt="img"></p>
+<p>几种常用的BlockingQueue的实现类</p>
+<p><strong>ArrayBlockingQueue</strong></p>
+<p>ArrayBlockingQueue是典型的有界队列，内部使用的是数组来存储元素，利用ReentrantLock来实现线程安全，指定容量大小后，就不可以再改变</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ArrayBlockingQueue(int capacity, boolean fair)，构造方法，可以设置是否公平</span><br></pre></td></tr></table></figure>
+
+<p>公平策略同时会带来一定的性能损耗，非公平的吞吐量通常会高于公平的情况。</p>
+<p><strong>LinkedBlockingQueue</strong></p>
+<p>正如它的名字一样，它内部是使用的链表来存储元素，如果我们不指定它的容量大小的话，它默认的就是无界的，大小是Interget.MAX_VALUE</p>
+<p><strong>SynchronousQueue</strong></p>
+<p>它的默认容量是0，以达到生产者生产的东西直接递交给消费者，而不用经过阻塞队列，当有take操作的时候，就直接阻塞，等待有put操作放入数据，同理put也是一样的，put就是阻塞，等待有take操作</p>
+<p><strong>PriorityBlockingQueue</strong></p>
+<p>PriorityBlockingQueue 是一个支持优先级的无界阻塞队列，可以通过自定义类实现 compareTo() 方法来指定元素排序规则。</p>
+<p>它的 take 方法在队列为空的时候会阻塞，但是正因为它是无界队列，而且会自动扩容，所以它的队列永远不会满，所以它的 put 方法永远不会阻塞，添加操作始终都会成功</p>
+<p><strong>DelayQueue</strong></p>
+<p>DelayQueue 这个队列比较特殊，具有“延迟”的功能。我们可以设定让队列中的任务延迟多久之后执行，比如 10 秒钟之后执行，这在例如“30 分钟后未付款自动取消订单”等需要延迟执行的场景中被大量使用。</p>
+<p>它是无界队列，放入的元素必须实现 Delayed 接口，而 Delayed 接口又继承了 Comparable 接口，所以自然就拥有了比较和排序的能力</p>
+<h2 id="4-JVM"><a href="#4-JVM" class="headerlink" title="4.JVM"></a>4.JVM</h2><h3 id="1-4-1JVM运行时数据区域-vs-Java内存模型-（这2不一样！！！）"><a href="#1-4-1JVM运行时数据区域-vs-Java内存模型-（这2不一样！！！）" class="headerlink" title="1.4.1JVM运行时数据区域 vs Java内存模型 （这2不一样！！！）"></a>1.4.1JVM运行时数据区域 vs Java内存模型 （<strong>这2不一样！！！</strong>）</h3><ul>
+<li>JVM运行时数据区别：<ul>
+<li>线程私有的：程序计数器、本地方法栈、虚拟机栈</li>
+<li>线程共有的：堆、方法区</li>
+</ul>
+</li>
+<li>内存模型：Java内存模型的主要目标是为了定义程序中各个<strong>变量</strong>的访问规则，Java内存模型规定所有变量都存储在主内存中，除此之外，每条线程拥有自己的工作内存，且线程执行的时候对变量的读写操作都是在自己的工作内存中进行，而不是直接从主存中读或者写</li>
+</ul>
+<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="1-4-2内存泄露、内存溢出以及栈溢出"><a href="#1-4-2内存泄露、内存溢出以及栈溢出" class="headerlink" title="1.4.2内存泄露、内存溢出以及栈溢出"></a>1.4.2内存泄露、内存溢出以及栈溢出</h3><ul>
+<li>内存泄露：内存泄露就是Java堆中的对象，无法得到有效的回收，而导致一直存在与堆中</li>
+<li>内存溢出：内存泄露过多，而导致内存溢出，即当新对象来临的时候，在堆中却没有足够的空间分配给新的对象，从而导致OOM</li>
+<li>栈溢出：分两种：1.线程请求的栈深度过大，StackOverflowError，2.虚拟机在扩展栈时候无法申请足够的空间：OOM</li>
+</ul>
+<h3 id="1-4-3JVM类加载机制及其作用与对象的初始化"><a href="#1-4-3JVM类加载机制及其作用与对象的初始化" class="headerlink" title="1.4.3JVM类加载机制及其作用与对象的初始化"></a>1.4.3JVM类加载机制及其作用与对象的初始化</h3><ul>
+<li>类加载机制：加载-&gt;验证-&gt;准备-&gt;解析-&gt;初始化-&gt;使用</li>
+<li>对象的初始化：类加载检查-&gt;分配内存-&gt;初始化零值-&gt;设置对象头-&gt;执行init方法</li>
+</ul>
+<p>JVM垃圾回收</p>
+<ul>
+<li>如何判断对象已经死亡？引用计数法 vs 可达性分析 </li>
+<li>如何回收对象？垃圾收集算法 </li>
+<li>Minor GC vs Full GC </li>
+<li>常用的垃圾收集器及其特点 </li>
+<li>内存分配与回收策略 </li>
+</ul>
+<p>GC调优</p>
+<ul>
+<li>GC调优的思路 </li>
+<li>JVM常用参数 </li>
+<li>基于JDK命令行工具监控Java进程， 如 jps,jinfo,jstat,jmap,jstack</li>
+</ul>
+<h3 id="1-4-4MinorGC和FullGC"><a href="#1-4-4MinorGC和FullGC" class="headerlink" title="1.4.4MinorGC和FullGC"></a>1.4.4MinorGC和FullGC</h3><p>MinorGC触发条件：</p>
+<p>Eden区内存不够的时候，即一个新的对象进来，申请对象内存空间的时候，不够了，则触发MinorGC</p>
+<p>FullGC触发条件：</p>
+<p>即老年代的内存不够的时候，即触发FullGC</p>
+<h3 id="1-4-5垃圾回收算法"><a href="#1-4-5垃圾回收算法" class="headerlink" title="1.4.5垃圾回收算法"></a>1.4.5垃圾回收算法</h3><ol>
+<li>标记清除算法</li>
+<li>复制算法</li>
+<li>标记整理算法</li>
+<li>分代算法</li>
+</ol>
+<h3 id="1-4-5垃圾回收器"><a href="#1-4-5垃圾回收器" class="headerlink" title="1.4.5垃圾回收器"></a>1.4.5垃圾回收器</h3><p>CMS！！！</p>
+<h3 id="1-4-6常用JVM参数"><a href="#1-4-6常用JVM参数" class="headerlink" title="1.4.6常用JVM参数"></a>1.4.6常用JVM参数</h3><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-Xms</td>
+<td>初始化堆大小</td>
+</tr>
+<tr>
+<td>-Xmx</td>
+<td>最大堆大小</td>
+</tr>
+<tr>
+<td>-Xss</td>
+<td>每个线程的堆栈大小</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="2-Spring"><a href="#2-Spring" class="headerlink" title="2.Spring"></a>2.Spring</h1><h2 id="2-1bean的生命周期"><a href="#2-1bean的生命周期" class="headerlink" title="2.1bean的生命周期"></a>2.1bean的生命周期</h2><p>简单来说bean的生命周期</p>
+<ol>
+<li>Spring启动，进行Bean的实例化，首先加载对应bean的构造器(无参构造器)</li>
+<li>调用属性的set方法</li>
+<li>(在调用指定的初始化方法之前，还可以调用postProcessBeforeInit方法)</li>
+<li>调用指定的初始化方法，这个方法完成bean的初始化完成，可以使用bean了(手动指定)</li>
+<li>(在调用指定的初始化方法之前，还可以调用postProcessAfterInit方法)</li>
+<li>获取bean</li>
+<li>当容器关闭的时候，执行指定的销毁bean的方法(手动指定)</li>
+</ol>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200920185228976.png" alt="image-20200920185228976"></p>
+<h2 id="2-2Spring-IOC"><a href="#2-2Spring-IOC" class="headerlink" title="2.2Spring IOC"></a>2.2Spring IOC</h2><p>SpringIOC 是控制反转，由 Spring IOC 容器来负责对象的生命周期和对象之间的关系，即new的过程，交给容器去做，而我们就不需要进行对象的生成，只负责向容器索取对象即可，容器就会自动帮我们关联对象和对象里面属性的引用</p>
+<p>如何实现IOC，需要 DI 对象的注入，那么注入的方式有：</p>
+<ol>
+<li>构造器注入:被注入的对象通过在其构造方法中声明依赖对象的参数列表，让外部知道它需要哪些依赖对象</li>
+<li>Setter()注入:相比于构造器注入，setter 方式注入会显得比较宽松灵活些，它可以在任何时候进行注入，当然是在正式使用对象之前</li>
+<li>接口注入:接口方式注入显得比较霸道，因为它需要被依赖的对象实现不必要的接口，带有侵入性(不推荐)</li>
+</ol>
+<h2 id="2-3循环依赖的产生和解决？？？？"><a href="#2-3循环依赖的产生和解决？？？？" class="headerlink" title="2.3循环依赖的产生和解决？？？？"></a>2.3循环依赖的产生和解决？？？？</h2><p>循环依赖的产生可能有很多种情况，例如：</p>
+<ol>
+<li><p>A的构造方法中依赖了B的实例对象，同时B的构造方法中依赖了A的实例对象</p>
+</li>
+<li><p>A的构造方法中依赖了B的实例对象，同时B的某个field或者setter需要A的实例对象，以及反之</p>
+</li>
+<li><p>A的某个field或者setter依赖了B的实例对象，同时B的某个field或者setter依赖了A的实例对象，以及反之</p>
+</li>
+</ol>
+<p>利用三级缓存来解决循环依赖问题</p>
+<p><strong>三级缓存是什么？？为什么能解决循环依赖问题？</strong></p>
+<h2 id="2-4动态代理的原理"><a href="#2-4动态代理的原理" class="headerlink" title="2.4动态代理的原理"></a>2.4动态代理的原理</h2><p>AOP的实现就是依靠动态代理，而在Spring中动态代理有两种</p>
+<ol>
+<li>JDK级别的动态代理</li>
+<li>cglib框架级的动态代理</li>
+</ol>
+<p>两者的区别：</p>
+<p>JDK的动态代理，使用的是JDK自带的反射来实现的，CGLib底层采用ASM字节码生成框架，使用字节码技术生成代理类，比使用Java反射效率要高</p>
+<p><strong>JDK级别的代理，必须要实现对象接口</strong></p>
+<h2 id="2-5BeanFactory和FactoryBean的区别"><a href="#2-5BeanFactory和FactoryBean的区别" class="headerlink" title="2.5BeanFactory和FactoryBean的区别"></a>2.5BeanFactory和FactoryBean的区别</h2><p>BeanFactory是IOC的底层容器</p>
+<p>FactoryBean是创建Bean的一种方式，帮助实现复杂的初始化逻辑</p>
+<h2 id="2-6SpringBoot常用注解"><a href="#2-6SpringBoot常用注解" class="headerlink" title="2.6SpringBoot常用注解"></a>2.6SpringBoot常用注解</h2><p>@Controller、@RestController、@Service</p>
+<p>用于POST、GET请求的有</p>
+<p>@RequestMapping(method = RequestMethod.POST\RequestMethod.GET)</p>
+<p>@PostMapping</p>
+<p>@GetMapping</p>
+<p>获取url数据的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/getUser/&#123;uid&#125;"</span>)    </span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getUser</span><span class="params">(@PathVariable(<span class="string">"uid"</span>)</span>Integer id, Model model) </span>&#123;       </span><br><span class="line">	System.out.println(<span class="string">"id:"</span>+id);        </span><br><span class="line">	<span class="keyword">return</span> <span class="string">"user"</span>;    </span><br><span class="line">&#125;</span><br><span class="line">fx:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/getUser/<span class="number">123</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/getUser"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getUser</span><span class="params">(@RequestParam(<span class="string">"uid"</span>)</span>Integer id, Model model) </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"id:"</span>+id);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"user"</span>;</span><br><span class="line">&#125;    </span><br><span class="line">fx:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/getUser?uid=<span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>获取Post数据的</p>
+<p>@RequestParam 也可以用来接受Post请求，就看RequestMapping设置的是Post还是get</p>
+<p>Q:它是如何从字符串类型转成SpringBoot中所写的对应数据类型的？</p>
+<p>??????????????????</p>
+<p>bean注册的有</p>
+<p>@Autowire、@Resource</p>
+<p>这两个的区别是</p>
+<p>@Autowire是按照type来装配，它要求依赖的对象必须存在，要允许为null，则要设置required=false</p>
+<p>@Resource是默认按照name来装配，它也可以按照type来装配</p>
+<h2 id="2-7SpringBoot热部署的方式"><a href="#2-7SpringBoot热部署的方式" class="headerlink" title="2.7SpringBoot热部署的方式"></a>2.7SpringBoot热部署的方式</h2><p><strong>1.引入spring-boot-devtools jar包达到热部署</strong></p>
+<p>此种方式的特点是作用范围广，系统的任何变动包括配置文件修改、方法名称变化都能覆盖，但是后遗症也非常明显，它是采用文件变化后重启的策略来实现了，主要是节省了我们手动点击重启的时间，提高了实效性，在体验上会稍差。</p>
+<p>注意事项<br>1、生产环境devtools将被禁用，如java -jar方式或者自定义的类加载器等都会识别为生产环境。</p>
+<p>2、打包应用默认不会包含devtools，除非你禁用SpringBoot Maven插件的 excludeDevtools属性。</p>
+<p>3、Thymeleaf无需配置 spring.thymeleaf.cache:false，devtools默认会自动设置，参考完整属性。</p>
+<p><strong>2.Spring Loaded</strong></p>
+<p>是Spring</p>
+<h2 id="2-8-Resource-和-Autowire对比"><a href="#2-8-Resource-和-Autowire对比" class="headerlink" title="2.8@Resource 和@Autowire对比"></a>2.8@Resource 和@Autowire对比</h2><p>@Autowire的源码部分</p>
+<p>1.里面只有一个required() 默认是true，想要指定bean的name，得使用@qualifier(“xx”)来指定bean的name</p>
+<p>2.@Autowired默认按类型装配（这个注解是属业spring的），默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Autowired &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>@Resource的源码部分</p>
+<p>1.@Resource（这个注解属于J2EE的），默认按照名称进行装配，名称可以通过name属性进行指定，如果没有指定name属性，当注解写在字段上时，默认取字段名进行安装名称查找，如果注解写在setter方法上默认取属性名进行装配。当找不到与名称匹配的bean时才按照类型进行装配。但是需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。</p>
+<p>2.可以看到Resource里面自带了那么属性来命名bean的name，不用其他的注解加以配合使用就可以达到效果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;TYPE, FIELD, METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Resource &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">lookup</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt; type() <span class="keyword">default</span> java.lang.Object<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">enum</span> AuthenticationType &#123;</span><br><span class="line">            CONTAINER,</span><br><span class="line">            APPLICATION</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">AuthenticationType <span class="title">authenticationType</span><span class="params">()</span> <span class="keyword">default</span> AuthenticationType.CONTAINER</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">shareable</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">mappedName</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<hr>
+<h1 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h1><h2 id="3-1各种树"><a href="#3-1各种树" class="headerlink" title="3.1各种树"></a>3.1各种树</h2><p>最最基本的树：</p>
+<h3 id="3-1-1二叉树"><a href="#3-1-1二叉树" class="headerlink" title="3.1.1二叉树"></a>3.1.1二叉树</h3><p>二叉树是每个节点最多有两个子树的树结构</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703220908620.png" alt="image-20200703220908620"></p>
+<h3 id="3-1-2满二叉树"><a href="#3-1-2满二叉树" class="headerlink" title="3.1.2满二叉树"></a>3.1.2满二叉树</h3><p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703220942057.png" alt="image-20200703220942057"></p>
+<p>每一层的节点都是满的</p>
+<h3 id="3-1-3完全二叉树"><a href="#3-1-3完全二叉树" class="headerlink" title="3.1.3完全二叉树"></a>3.1.3完全二叉树</h3><p>除了最下面一层之外，每一层的节点都是满的，最下面一层的节点都集中在最左边</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703221110703.png" alt="image-20200703221110703"></p>
+<h3 id="3-1-4平衡二叉树"><a href="#3-1-4平衡二叉树" class="headerlink" title="3.1.4平衡二叉树"></a>3.1.4平衡二叉树</h3><p>可能为空树，或者它的左子树与右子树高度不超过1</p>
+<h3 id="3-1-5最优二叉树"><a href="#3-1-5最优二叉树" class="headerlink" title="3.1.5最优二叉树"></a>3.1.5最优二叉树</h3><p>树的带权路径长度达最小</p>
+<h3 id="3-1-6二叉搜索树"><a href="#3-1-6二叉搜索树" class="headerlink" title="3.1.6二叉搜索树"></a>3.1.6二叉搜索树</h3><p>接着就是二叉排序树BST</p>
+<p>定义是：</p>
+<p>1.若左子树不为空，则左子树上所有节点的值均小于它的根节点的值</p>
+<p>2.若右子树不为空，则右子树上所有节点的值均大于它的根节点的值</p>
+<p>3.左右子树也可以为二叉搜索树</p>
+<p>正常搜索的次数就是它的层数O(logn)，可是也有特殊情况，如果所有的点都是线性排序的话，那么它就变成了线性的查找</p>
+<img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703221622667.png" alt="image-20200703221622667" style="zoom: 33%;">
+
+
+
+<p>因为它不会自平衡，所以就有了自平衡树</p>
+<hr>
+<h1 id="4-经典算法"><a href="#4-经典算法" class="headerlink" title="4.经典算法"></a>4.经典算法</h1><h2 id="4-1topk问题"><a href="#4-1topk问题" class="headerlink" title="4.1topk问题"></a>4.1topk问题</h2><p>给定一个数组，从中取出k个最大的数，比如int[] arr  = new int[]{1,2,3,4,5,6}; k = 2,则要输出 6 和 5</p>
+<p>解法1：排序</p>
+<p>将给出的数组，经过一次从小到大的排序后，从末端输出k个数，即可，时间复杂度根据你排序的算法来定，如果使用的是快排，则时间复杂度是O(nlg(n))</p>
+<p>解法2：堆(小顶堆、大顶堆)，时间复杂度O(nlg(n))</p>
+<p>解法3：局部排序,时间复杂度O(n*k)</p>
+<h2 id="4-2链表有环"><a href="#4-2链表有环" class="headerlink" title="4.2链表有环"></a>4.2链表有环</h2><p>1.如何判断链表有环？</p>
+<p>创建两个指针，一个快指针，一个慢指针，快指针每次走两步，慢指针每次走一步，只要快慢指针相遇，那么这个链表就是有环的</p>
+<p>2.找到链表有环的环入口？</p>
+<p>首先，创建两个指针，慢指针走一步，快指针走两步，他们必然相遇</p>
+<p>相遇的点，就是相遇点，在相遇的时候，慢指针就回到出发点，他们各自每次走一步，他们再次相遇的点，就一定是链表环的入口</p>
+<h2 id="4-3三个数之和"><a href="#4-3三个数之和" class="headerlink" title="4.3三个数之和"></a>4.3三个数之和</h2><p>给定一个数组，里面任意三个数之和等于0，那么就将这三个数，提取出来，如何找到数组内不重复的，使三个数为0的所有可能？</p>
+<p>思路：首先进行特判，去掉特殊情况，即数组为null || 数组长度小于3,</p>
+<p>2.然后对数组进行排序，因为整个算法，就是对0作为中线，其余的数都偏离0这个数</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200712163223479.png" alt="image-20200712163223479"></p>
+<p>从左往右开始遍历，i为第一个数，第二个数就是i+1，第三个数就是nums.length-1,只有这样的情况，三个数才有可能是等于0的，如果i本身都已经大于0了，那么后面的数也就没有必要进行查询累加了，因为不可能为0，记得要去重</p>
+<h2 id="4-4常见的排序算法"><a href="#4-4常见的排序算法" class="headerlink" title="4.4常见的排序算法"></a>4.4常见的排序算法</h2><p>冒泡排序、插入排序、希尔排序、快速排序、桶排序</p>
+<hr>
+<h1 id="5-综合问题"><a href="#5-综合问题" class="headerlink" title="5.综合问题"></a>5.综合问题</h1><h2 id="5-1单点登录"><a href="#5-1单点登录" class="headerlink" title="5.1单点登录"></a>5.1单点登录</h2><p>现在企业的系统越来越来，而不可能让用户每进入同一个公司的不同系统就重新登录一次，这是十分可怕的事情，所以单点登录的概念就出现了，即一次登录，在不同的系统中都可以免去登录</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703183753945.png" alt="image-20200703183753945"></p>
+<p>这里要分为两种， 一种是同域下的单点登录，还有一个不同域的单点登录</p>
+<p>在这里要明白一个很重要的问题，Session和Cookie</p>
+<p><strong>Cookie</strong></p>
+<p>1.Cookie是保存在客户端的一小段文本信息，它是由服务器端生成的</p>
+<p>2.当首次向服务器端发起请求，就会产生一个Cookie保存在本地，是有时间限制的</p>
+<p>3.当再次访问的时候，就连同Cookie一起发送给服务器</p>
+<p>4.Cookie是不可跨域的，即不同网站有不同的Cookie，百度是百度的，谷歌是谷歌的</p>
+<p>5.安全性不高，在客户端可被随意查看</p>
+<p><strong>Session</strong></p>
+<p>1.Session是客户端首次访问服务器的时候，会生成的一个SessionId，即会话标识，标识你是谁，会保存在服务器端</p>
+<p>正常的登录是：</p>
+<p>1.客户端向服务器端首次发送请求，服务器端生成一个SessionId，表示会话</p>
+<p>2.服务器将SessionId回传给客户端，客户端将其SessionId做为cookie,保存在本地</p>
+<p>3.关闭浏览器后，会话即结束</p>
+<p>4.开启浏览器，再次访问页面的时候，带上Cookie里面的SessionId，传给服务器</p>
+<p>5.服务器检查是否在服务器存在此SessionId，如果存在，直接进行登录成功</p>
+<p>缺点，当用户量很大的时候，服务器端为每一个用户都保存一个SessionId，服务器端的压力是很大的，继而退出了Token</p>
+<h3 id="1-1同域下的单点登录"><a href="#1-1同域下的单点登录" class="headerlink" title="1.1同域下的单点登录"></a>1.1同域下的单点登录</h3><p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200703190728339.png" alt="image-20200703190728339"></p>
+<p>问题一：首先Cookie在不同域下是不能共享的，所以要解决这个问题，就是将Cookie 的域设置成顶域，比如.a.com，所有子域下面的系统都可以拿到此Cookie</p>
+<p>问题二：Cookie共享了，那么子系统怎么知道其他系统已经有过会话了呢？就是通过共享Session。比如Spring-Session</p>
+<h3 id="1-2不同域下的单点登录"><a href="#1-2不同域下的单点登录" class="headerlink" title="1.2不同域下的单点登录"></a>1.2不同域下的单点登录</h3><p>登录A系统，一个域</p>
+<p>1.用户访问app系统，app系统是需要登录的，但用户现在没有登录。</p>
+<p>2.跳转到CAS server，即SSO登录系统，<strong>以后图中的CAS Server我们统一叫做SSO系统。</strong> SSO系统也没有登录，弹出用户登录页。</p>
+<p>3.用户填写用户名、密码，SSO系统进行认证后，将登录状态写入SSO的session，浏览器（Browser）中写入SSO域下的Cookie。</p>
+<p>4.SSO系统登录完成后会生成一个ST（Service Ticket），然后跳转到app系统，同时将ST作为参数传递给app系统。</p>
+<p>5.app系统拿到ST后，从后台向SSO发送请求，验证ST是否有效。</p>
+<p>6.验证通过后，app系统将登录状态写入session并设置app域下的Cookie。</p>
+<p>然后登录B系统，另外一个域</p>
+<p>1.用户访问app2系统，app2系统没有登录，跳转到SSO。</p>
+<p>2.由于SSO已经登录了，不需要重新登录认证。</p>
+<p>3.SSO生成ST，浏览器跳转到app2系统，并将ST作为参数传递给app2。</p>
+<p>4.app2拿到ST，后台访问SSO，验证ST是否有效。</p>
+<p>5.验证成功后，app2将登录状态写入session，并在app2域下写入Cookie。</p>
+<h2 id="5-2-CSRF攻击"><a href="#5-2-CSRF攻击" class="headerlink" title="5.2 CSRF攻击"></a>5.2 CSRF攻击</h2><p>什么是CSRF攻击？</p>
+<p>cross-site request forgery 跨站请求伪造，可以理解为攻击者模仿你的身份，向服务器发起恶意请求，比如：以你的名义发送邮件，发消息，盗取你的账户，甚至购买商品</p>
+<p>CSRF防御？</p>
+<p>CSRF防御可以分为客户端和服务器端防御，但是服务器端的防御效果更好</p>
+<p>1.可以在客户端表单内埋下一个隐藏的随机hash值，客户端连通表单内容带上hash值，给到服务器，服务器验证表单内容外还要验证hash值，那么就可以杜绝CSRF攻击，因为它没有办法拿到hash值</p>
+<p>2.验证码</p>
+<p>在客户端填写表单的时候，填写如图片内的随机字符串，传送给服务器，并进行验证，那么就可以杜绝CSRF攻击</p>
+<h2 id="5-3Redis与Mysql数据不一致问题"><a href="#5-3Redis与Mysql数据不一致问题" class="headerlink" title="5.3Redis与Mysql数据不一致问题"></a>5.3Redis与Mysql数据不一致问题</h2><p>数据不一致分为三种情况：</p>
+<ol>
+<li>Mysql有数据，Redis没有数据：这种方式的解决就是在读Mysql数据的时候，把读到的数据写入到Redis中即可</li>
+<li>Redis有数据，Mysql没有数据：</li>
+<li>同时都有数据，但是两者数据不一致：产生原因就是更新Mysql或者更新Redis的时候，再更新另外一个就失败了，导致两者数据不一致</li>
+</ol>
+<h2 id="5-4集群和分布式的区别"><a href="#5-4集群和分布式的区别" class="headerlink" title="5.4集群和分布式的区别"></a>5.4集群和分布式的区别</h2><p>分布式：指的是一个业务，将其拆分为多个子业务，然后将子业务配置在不同的节点上，一个子业务宕机垮掉，那么整个业务也不能正常被访问</p>
+<p>举例：比如跑1000米，将整个1000米，分给4个人去跑，一个人跑250米比一个人跑1000米要快得多，但是其中一个人不能完成250米，那么这个1000米也就不能完成</p>
+<p>集群：集群是将多个服务器集中在一起，他们都同时实现一个业务，一旦其中一个服务器宕机，那么其他服务器就可以顶上，继续提供服务，这个就与负载均衡等有关系，让业务更顺畅</p>
+<p>所以总的来说，分布式，是将业务拆分到不同的节点，而每个节点又可以做成集群，但是集群却包括分布式</p>
+<h2 id="5-5如何破坏单例模式"><a href="#5-5如何破坏单例模式" class="headerlink" title="5.5如何破坏单例模式"></a>5.5如何破坏单例模式</h2><ol>
+<li>可以通过反射来实现破坏单例模式，因为通过反射，可以获取到类的所有属性和方法，包括私有的，那么私有构造器也就被获取到了，那么就可以通过newInstance()来创建新的对象</li>
+<li>通过序列化破坏单例模式，一个类实现了Serializable接口，该类就可以被序列化，当序列化后，再反序列化回来的时候，这个对象就被创新创建了，已经不会之前的对象</li>
+</ol>
+<p>Q:如何防止破坏单例模式呢？</p>
+<p>最简单的就是使用枚举的方式写单例模式，可以防止反射破坏也可以防止序列化破坏</p>
+<h2 id="5-6幂等性问题引发的思考"><a href="#5-6幂等性问题引发的思考" class="headerlink" title="5.6幂等性问题引发的思考"></a>5.6幂等性问题引发的思考</h2><p>什么是幂等性？</p>
+<p>幂等性简单来说就是指用户的一次操作，不管中间发生什么，做了多少次，结果和效果都只产生一次</p>
+<p>比如：</p>
+<ol>
+<li>前端重复提交相同的表单，后台应该值接受一次</li>
+<li>扣钱操作，不管遇到网络延迟错误还是系统错误，都应该只扣用户一次钱</li>
+</ol>
+<h2 id="5-7线上发生死锁怎么办？"><a href="#5-7线上发生死锁怎么办？" class="headerlink" title="5.7线上发生死锁怎么办？"></a>5.7线上发生死锁怎么办？</h2><p>线上发生死锁，第一时间保存JVM信息和发生死锁的日志，然后快速重启服务器，因为死锁并不是在马上会发送的情况，它只有在很多前提和并发的情况下才会发生，所以重启后再次发生死锁的几率并不高，就给我们时间检查发生死锁的位置。</p>
+<p>解决死锁的策略：</p>
+<p>1.鸵鸟策略:对偶然的，几年不会发生一次的死锁情况，可以选择忽略它</p>
+<p>2.避免策略：优化代码逻辑，从根本上去消灭死锁的发生可能性</p>
+<p>3.检测和恢复策略:先允许系统发生死锁，然后在解除，一旦发生死锁成环了，就开启死锁恢复机制，比如强行剥夺资源，消灭部分线程等手段来恢复死锁的情况</p>
+<h2 id="5-8Redis集群和Mysql集群对比"><a href="#5-8Redis集群和Mysql集群对比" class="headerlink" title="5.8Redis集群和Mysql集群对比"></a>5.8Redis集群和Mysql集群对比</h2><ol>
+<li>Redis集中的所依赖的各种部分<ol>
+<li>哨兵</li>
+<li>主从复制</li>
+</ol>
+</li>
+<li>Mysql集群所依赖的部分<ol>
+<li>主从复制</li>
+</ol>
+</li>
+</ol>
+<h1 id="6-计算机网络"><a href="#6-计算机网络" class="headerlink" title="6.计算机网络"></a>6.计算机网络</h1><h2 id="6-1http1-0-1-1-2-0"><a href="#6-1http1-0-1-1-2-0" class="headerlink" title="6.1http1.0\1.1\2.0"></a>6.1http1.0\1.1\2.0</h2><p>Http协议是一种无状态的请求协议，位于计算机网络模型的应用层</p>
+<p>让Http协议不断进化的因素，我认为是<strong>带宽和延迟</strong>，只有让带宽更大、延迟更低，才能使用户体验更好的浏览效果</p>
+<p><strong>带宽：</strong>如果说我们还停留在拨号上网的阶段，带宽可能会成为一个比较严重影响请求的问题，但是现在网络基础建设已经使得带宽得到极大的提升，我们不再会担心由带宽而影响网速，那么就只剩下延迟了。</p>
+<p><strong>延迟：</strong></p>
+<ul>
+<li>浏览器阻塞（HOL blocking）：浏览器会因为一些原因阻塞请求。浏览器对于同一个域名，同时只能有 4 个连接（这个根据浏览器内核不同可能会有所差异），超过浏览器最大连接数限制，后续请求就会被阻塞。</li>
+<li>DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。这个通常可以利用DNS缓存结果来达到减少这个时间的目的。</li>
+<li>建立连接（Initial connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文，达到真正的建立连接，但是这些连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。</li>
+</ul>
+<p><strong>Http1.0</strong>：</p>
+<ol>
+<li>是一种比较落后的Http请求版本，每次请求都会建立一次连接和慢启动过程，且每次都是将对象整体传回</li>
+<li>缓存处理只有不多的几种策略</li>
+</ol>
+<p><strong>Http1.1：</strong></p>
+<ol>
+<li>缓存处理：支持更多的缓存策略</li>
+<li>带宽优化：支持只请求一部分资源</li>
+<li>错误通知：更多的错误信息码</li>
+<li>长连接：在HTTP1.1中默认开启的connection:keep-alive，长连接，一次连接后，可以在这个连接中多次发送请求和响应，减少了不断建立和关闭连接的消耗</li>
+</ol>
+<p><strong>HTTP2.0：</strong></p>
+<ol>
+<li>多路复用：在HTTP1.1中长连接，里面的请求是串行的，得一个一个的发送请求，而HTTP2.0中的请求是并行的，这样当一个请求耗时比较大的时候也可以在里面自己处理，不用让其他慢的请求等待</li>
+</ol>
+<img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200704092922256.png" alt="image-20200704092922256" style="zoom:50%;">
+
+<ol start="2">
+<li>header压缩：使用比HTTP1.1更先进的压缩技术，进行压缩数据传输</li>
+</ol>
+<h2 id="6-2HTTP、HTTPS"><a href="#6-2HTTP、HTTPS" class="headerlink" title="6.2HTTP、HTTPS"></a>6.2HTTP、HTTPS</h2><p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200704093206525.png" alt="image-20200704093206525"></p>
+<p>HTTP是直接建立在TCP连接之上的一层协议，采用的端口是80，且没有安全机制</p>
+<p>HTTPS是建立在TCP和SSL协议之上的新协议，是对HTTP的补充，采用的端口是443，有安全机制，安全机制就是SSL，会对传输的内容先进行加密，再进行TCP连接传输</p>
+<p>SSL、TLS加密：</p>
+<ol>
+<li>客户端向服务器发送一个请求，然后服务器端有一套整数，也就是一次非对称加密，将公钥传给客户端</li>
+<li>客户端拿到公钥，因为它实际是证书，所以可以验证有效性，验证后，即对客户端随机产生的一个随机值，进行一次加密，用公钥来加密，然后传回给服务器，这就是一次对称加密</li>
+<li>服务器拿到公钥加密的随机值后，用私钥解密，还原随机值</li>
+<li>然后服务器端将要响应的数据，用随机值进行一次对称加密，然后传给客户端</li>
+<li>客户端拿到数据后，进行解密，还原信息。</li>
+</ol>
+<p>Q： 如何产生的中间人攻击？</p>
+<p>首先，很多用户在输入网址的时候，并没有手动的去写https的请求协议，而是直接使用的http协议，所以以http请求协议发送给了服务器，服务器再将其进行网址重定向，比如<a href="http://www.baidu.com/,服务器就将其重定向为https://www.baidu.com/发送给浏览器，但是在这过程中，被中间人监听了，并修改地址为http，传送给客户端，就继续请求http连接，再次被中间人修改，将http修改为https，发送给服务器，然后服务器就以为是安全的，如此往返" target="_blank" rel="noopener">http://www.baidu.com/,服务器就将其重定向为https://www.baidu.com/发送给浏览器，但是在这过程中，被中间人监听了，并修改地址为http，传送给客户端，就继续请求http连接，再次被中间人修改，将http修改为https，发送给服务器，然后服务器就以为是安全的，如此往返</a></p>
+<p>Q：https如何防止中间人攻击？</p>
+<ol>
+<li><p>采用共享秘密增强服务器认证</p>
+<p>该方法将存储与网站用户提前协商的秘密作为 ＳＳＬ 会 话时的认证标 志，实现其对用户身份的鉴别，该 秘 密 可 以 是用户用于登陆服务器的账户和密码或者其它口令。协 商 握手阶段，在客 户 端 每 次 都 将 计 算 秘 密 ＭＡＣ 添加 到 ＳＳＬ 握手消息尾部，然后发送给服务器，服务器收到消息后计 算数据库中存储的该用户的秘密 ＭＡＣ 进行 对 比，用 以 防 止中间人攻击。</p>
+</li>
+<li><p>采用临时验证码增强服务器认证</p>
+</li>
+<li><p>基于协商加密的 ＨＴＴＰＳ中间人攻击防御方法</p>
+</li>
+</ol>
+<p>Q：https证书有什么用？</p>
+<p>1.保障用户隐私信息安全</p>
+<p>SSL证书让网站实现加密传输，保证了用户的信息安全</p>
+<p>2.帮助用户识别钓鱼网站</p>
+<p>SSL证书可以识别服务器的真实身份，可以有效的识别钓鱼网站的身份</p>
+<h2 id="6-3Cookie和Session机制"><a href="#6-3Cookie和Session机制" class="headerlink" title="6.3Cookie和Session机制"></a>6.3Cookie和Session机制</h2><p>Cookie是存储在客户端的一个字符串，Session是会话控制机制，它会在客户端每一次新的请求连接的时候生成一个SessionId，然后服务器端进行保存，并将SessionId，做为Cookie发送给客户端，客户端就保存了Cookie，当第二次访问相同的页面的时候，就可以把Cookie传回给服务器，服务器做认证处理，知道是哪一个人后就可以进行页面跳转控制。</p>
+<p>Session和Cookie都有保存时间，过期则不再生效，需要请求新的</p>
+<h2 id="6-4状态码"><a href="#6-4状态码" class="headerlink" title="6.4状态码"></a>6.4状态码</h2><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>404 Not Found</td>
+<td>客服端请求的页面，在服务器端并没有找到对应的资源文件</td>
+</tr>
+<tr>
+<td>405 Method Not Allowed</td>
+<td>客户端在请求页面的时候的Method，与服务器端被允许的Method不同，或者说是不允许使用该Method请求</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>服务器端出现了错误，一般的情况是代码性错误</td>
+</tr>
+</tbody></table>
+<h2 id="6-5HTTP请求头"><a href="#6-5HTTP请求头" class="headerlink" title="6.5HTTP请求头"></a>6.5HTTP请求头</h2><p>HTTP请求头由3个部分组成，HTTP的请求方式、URI、HTTP协议的版本</p>
+<h2 id="6-6URL和URI的区别"><a href="#6-6URL和URI的区别" class="headerlink" title="6.6URL和URI的区别"></a>6.6URL和URI的区别</h2><p>1.URI(Uniform Resource Identifier) 是统⼀资源标志符，可以唯⼀标识⼀个资源。</p>
+<p>2.URL(Uniform Resource Location) 是统⼀资源定位符，可以提供该资源的路径。它是⼀种具体的URI，即URL 可以⽤来标识⼀个资源，⽽且还指明了如何 locate 这个资源。</p>
+<p>URI的作⽤像身份证号⼀样，URL的作⽤更像家庭住址⼀样。URL是⼀种具体的URI，它不仅唯⼀标识资源，⽽且还提供了定位该资源的信息</p>
+<h1 id="7-Mysql数据库"><a href="#7-Mysql数据库" class="headerlink" title="7.Mysql数据库"></a>7.Mysql数据库</h1><h2 id="7-1数据库SQl注入"><a href="#7-1数据库SQl注入" class="headerlink" title="7.1数据库SQl注入"></a>7.1数据库SQl注入</h2><p>SQl注入是一种将SQL代码添加到输入参数中，传递到sql服务器解析并执行的一种攻击手段</p>
+<p>追问：SQL产生的原因？</p>
+<p>1.Web开发人员无法保证所有的输入都是已经过滤掉的</p>
+<p>2.攻击者利用发送给sql服务器的输入参数构造可执行代码</p>
+<p>3.数据库未做相应的安全配置</p>
+<p>追问：如何防止SQL注入？</p>
+<p>1.使用参数化筛选语句：</p>
+<p>用户输入不能直接作为SQL语句，而是用户输入参数化，SQL语句整体是差不多的，但是用户只能输入其中的某个参数</p>
+<p>2.避免使用解释程序，这是黑客用来执行非法命令的手段</p>
+<p>3.使用专业的漏洞扫描工具</p>
+<h2 id="7-2Limit原理"><a href="#7-2Limit原理" class="headerlink" title="7.2Limit原理"></a>7.2Limit原理</h2><p>Limit子句可以被用于强制 SELECT 语句返回指定的记录数。Limit接受一个或两个数字参数。参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。</p>
+<p>　　//初始记录行的偏移量是 0(而不是 1)：<br>　　mysql&gt; SELECT * FROM table LIMIT 5,10; //检索记录行6-15</p>
+<p>　　//为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为 -1：<br>　　mysql&gt; SELECT * FROM table LIMIT 95,-1; // 检索记录行 96-last</p>
+<p>　　//如果只给定一个参数，它表示返回最大的记录行数目。换句话说，LIMIT n 等价于 LIMIT 0,n：<br>　　mysql&gt; SELECT * FROM table LIMIT 5;   //检索前 5 个记录行</p>
+<p><strong>Limit的效率高？</strong></p>
+<p>　　常说的Limit的执行效率高，是对于一种特定条件下来说的：即数据库的数量很大，但是只需要查询一部分数据的情况。<br>　　高效率的原理是：避免全表扫描，提高查询效率。</p>
+<p>　　比如：每个用户的email是唯一的，如果用户使用email作为用户名登陆的话，就需要查询出email对应的一条记录。<br>　　SELECT * FROM t_user WHERE email=?;<br>　　上面的语句实现了查询email对应的一条用户信息，但是由于email这一列没有加索引，会导致全表扫描，效率会很低。<br>　　SELECT * FROM t_user WHERE email=? LIMIT 1;<br>　　加上LIMIT 1，只要找到了对应的一条记录，就不会继续向下扫描了，效率会大大提高。</p>
+<p><strong>Limit的效率低？</strong></p>
+<p>　　在一种情况下，使用limit效率低，那就是：只使用limit来查询语句，并且偏移量特别大的情况</p>
+<p>　　做以下实验：<br>   语句1：<br>     　　select * from table limit 150000,1000;<br>　　语句2:<br>     　　select * from table while id&gt;=150000 limit 1000;<br>　　语句1为0.2077秒；语句2为0.0063秒<br>　　两条语句的时间比是：语句1/语句2＝32.968</p>
+<p>　　比较以上的数据时，我们可以发现采用where…limit….性能基本稳定，受偏移量和行数的影响不大，而单纯采用limit的话，受偏移量的影响很大，当偏移量大到一定值后性能开始大幅下降。不过在数据量不大的情况下，两者的区别不大。</p>
+<p>　　所以应当先使用where等查询语句，配合limit使用，效率才高</p>
+<p>　　ps：在sql语句中，limit关键字是最后才用到的。以下条件的出现顺序一般是：where-&gt;group by-&gt;having-order by-&gt;limit</p>
+<h2 id="7-3Redo日志"><a href="#7-3Redo日志" class="headerlink" title="7.3Redo日志"></a>7.3Redo日志</h2><p>redo日志本质上只是记录了一下事务对数据库做了哪些修改，在数据库发生崩溃后，重启时候再次运行redo日志里面记录的操作，则可以保证持久性</p>
+<p>redo日志会把事务在执行过程中对数据库所做的所有修改都记录下来，在之后系统崩溃重启后可以把事务所做的任何修改都恢复出来。</p>
+<h2 id="7-4普通索引和唯一索引该如何选择？"><a href="#7-4普通索引和唯一索引该如何选择？" class="headerlink" title="7.4普通索引和唯一索引该如何选择？"></a>7.4普通索引和唯一索引该如何选择？</h2><p><strong>两者在查询能力上是没有多少区别的，主要还是更新操作的区别</strong></p>
+<p>从数据插入角度来说</p>
+<p>对于普通索引：数据要插入一条新的，如果要插入数据的页不在内存中，则会先将插入的命令记录在change buffer中，而不是立即去寻找该页进行插入，等待下次有机会该页进入到内存的时候，再进行同步更新merge操作，也保证了数据的一致性</p>
+<p>对于唯一索引：数据要插入一条新的，则是立即去寻找该数据对应的页，加载在内存中</p>
+<p>changeBuffer使用的就是内存中的 InnoDB buffer pool部分</p>
+<p>changeBuffer是十分适合于写多读少的系统中，它可以使得整个写的操作变缓慢下来，只有当merge的时候，数据才真正写入数据页内，常见的系统就是日志类和账单类，但是反过来，如果一个系统写了之后马上就会被访问，那么changeBuffer的作用就会多余，因为马上就会加载该页到内存，也就会触发merge这个操作</p>
+<h2 id="7-5如何给字符串添加索引比较优化？"><a href="#7-5如何给字符串添加索引比较优化？" class="headerlink" title="7.5如何给字符串添加索引比较优化？"></a>7.5如何给字符串添加索引比较优化？</h2><p>使用前缀索引，定义好长度，就可以做到既节省空间，又不用额外增加太多的查询成本</p>
+<p>缺点：</p>
+<p>使用前缀索引的时候，是不能使用覆盖索引的，因为系统本身并不能确定是否就是我们所需要的数据，所以需要再次回表查看</p>
+<p>当前缀区分度不够友好的情况下，如何优化？</p>
+<ol>
+<li>可以使用倒序存储</li>
+<li>添加hash运算</li>
+</ol>
+<h2 id="7-6DateTime和TimeStamp的区别"><a href="#7-6DateTime和TimeStamp的区别" class="headerlink" title="7.6DateTime和TimeStamp的区别"></a>7.6DateTime和TimeStamp的区别</h2><p>从时间范围上来看：</p>
+<p>DateTime是从1000-01-01 00:00:00 到9999-12-31 23::59:59</p>
+<p>TimeStamp 不能早于1970年 不能晚于2037年</p>
+<p>存储上来看</p>
+<p>DateTIme 是8字节存储，与时区无关，默认值是null</p>
+<p>TimeStamp是4字节存储，与时区有关，默认值是not null</p>
+<h2 id="7-7脏读、重复读、幻读三种理解"><a href="#7-7脏读、重复读、幻读三种理解" class="headerlink" title="7.7脏读、重复读、幻读三种理解"></a>7.7脏读、重复读、幻读三种理解</h2><p><strong>脏读</strong>，在事务的隔离性处于读未提交的级别下，是会产生脏读的，脏读是，并发情况下，各个事务之间可以相互读取未提交的数据，那么读到的数据就是脏数据</p>
+<p><strong>重复读</strong>：事务的隔离性处于读未提交和读已提交的两个级别下都会产生可重复读的问题，即对于一行数据，两次读取数据是不一致的，因为现在事务是透明的了，其他事务是无法读取除自己以外的事务内的东西，那么它就只能读取到事务之前的数据，某个事务更改了这行数据后，再次读取数据就是最新的了，那么就产生了可重复的问题</p>
+<p><strong>幻读</strong>：幻读在隔离性处于读未提交，读已提交和可重复读三种隔离性级别上都存在这种情况，幻读就是某个事务是读取一个区间段的数据，其他事务在这数据段内插入了新的数据，那么再次读取这个数据段内的数据的时候，就会产生幻行，就是幻读了</p>
+<h2 id="7-8大体量数据加入数据库的解决方案"><a href="#7-8大体量数据加入数据库的解决方案" class="headerlink" title="7.8大体量数据加入数据库的解决方案"></a>7.8大体量数据加入数据库的解决方案</h2><p>场景：随着业务的不断上升，数据库的数据也在不断的上升，那么就会带来CRUD的各种慢操作问题</p>
+<p>解决方案：</p>
+<ol>
+<li>从物理角度，可以增加服务器的数量，但是这样做的成本很高，实操性不强，并且增加服务器的速度是跟不上数据的增长速度的</li>
+<li>从软件的角度<ol>
+<li>一开始数据上升就可以开始考虑缓存，读写分离，加索引等操作来提高数据库的读写速度和并发性</li>
+<li>在2.1依旧不能从根本上去解决慢CRUD的问题的时候，就需要考虑到分库分表的实现来提高CRUD操作的速度</li>
+</ol>
+</li>
+</ol>
+<p>分库分表：</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200906091430665.png" alt="image-20200906091430665"></p>
+<h2 id="7-9Mysql性能分析"><a href="#7-9Mysql性能分析" class="headerlink" title="7.9Mysql性能分析"></a>7.9Mysql性能分析</h2><p>Mysql性能分析 的两种类型，或者说是两种角度，从这两种角度下手或许对整体的性能理解更全面，更知道该从哪里下手优化</p>
+<ol>
+<li>基于执行时间的分析：分析研究的是什么任务的执行时间最长</li>
+<li>基于等待的分析：基于等待的分析则是判断什么地方被阻塞的时间最长</li>
+</ol>
+<h2 id="7-10-数据库基本数据类型"><a href="#7-10-数据库基本数据类型" class="headerlink" title="7.10 数据库基本数据类型"></a>7.10 数据库基本数据类型</h2><p><strong>Q：对比int(1)和int(20)</strong></p>
+<p>数据库的基本数据类型int 占4个字节，也就是32位，int(1)表示为int类型指定宽度为1，但是这样的操作实际是没有什么实际意义的，因为在存储和计算的时候int(1)和int(20)是一样的，int(1)和int(20)只是用来显示字符的个数</p>
+<p><strong>Q:用于金钱计算的数字类型应该使用什么？</strong></p>
+<p>金钱也可以为小数，所以在实际的Mysql体系中，我们应该使用存储精确小数的类型，decimal，而不是使用float或者double，这两种只是小数的近似计算，而不是精确计算</p>
+<p><strong>Q:字符串类型</strong></p>
+<p>在Mysql中字符串类型有char和varchar，但实际varchar更省物理空间，因为它只存储实际必要的空间，会多创建一个隐藏字段来存储varchar的总长和实际长度，比如varchar(1000)，他们它需要1002个字节，因为需要2字节来存储长度信息</p>
+<h2 id="7-11为什么选择B-树作为索引的存储数据结构"><a href="#7-11为什么选择B-树作为索引的存储数据结构" class="headerlink" title="7.11为什么选择B+树作为索引的存储数据结构"></a>7.11为什么选择B+树作为索引的存储数据结构</h2><p>从好处开始说</p>
+<p>1.它是一种矮胖的树形数据结构，叶子节点是只存储实际数据，非叶子节点才是存储其数据的索引，他们高度越小，那么进行磁盘IO的次数也就越小，因为数据是放在磁盘中的，并不是在内存中，只有把磁盘中的数据加载在内存中，我们才能够实际的操作数据</p>
+<p>2.由于它是在存储的时候就是排好序的，所以它是支持范围查询的，而像Hash索引就是随机存储的，并不支持范围查询</p>
+<h2 id="7-12主从复制的复制是如何工作的"><a href="#7-12主从复制的复制是如何工作的" class="headerlink" title="7.12主从复制的复制是如何工作的"></a>7.12主从复制的复制是如何工作的</h2><p>在Mysql中复制有两种形式</p>
+<ol>
+<li>基于行的复制</li>
+<li>基于操作的复制</li>
+</ol>
+<p>但不管是哪一种，都说将其写入二进制文件中，所以它的主从复制工作就是从这里开始的</p>
+<ul>
+<li>主库的所有操作都写入二进制文件中</li>
+<li>从库将主库的二进制文件复制到自己的中继日志中</li>
+<li>从库读取中继日志中的事件，将其重放到从库的数据上</li>
+</ul>
+<h2 id="7-13数据库的select死锁如何产生"><a href="#7-13数据库的select死锁如何产生" class="headerlink" title="7.13数据库的select死锁如何产生"></a>7.13数据库的select死锁如何产生</h2><p>在探究如何产生死锁之前，我们可以先探究下for  update 语法，select * from table where ? for update</p>
+<p>for update是在数据库中上锁用的，可以为数据库中的行上一个排它锁。当一个事务的操作未完成时候，其他事务可以读取但是不能写入或更新。</p>
+<p>在InnoDB数据引擎中是支持行锁和事务的，for update也需要这两样的支持，for update就是为当前的语法上锁， InnoDB默认是行级别的锁，当在where后面有明确指定的主键时候，是行级锁。否则是表级别。</p>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">有一张表student  id主键列，name，status，status有索引</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>;//因为有主键索引，那么就根据索引快速找到id=1的行，然后锁住，直到找到所有id=1的行，在释放掉锁</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">for</span> <span class="keyword">update</span>;//由于name不是索引列，需要进行全表扫描，所以进行表锁</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">status</span> &lt;&gt; <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span> </span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">like</span> <span class="string">"3"</span> <span class="keyword">for</span> <span class="keyword">update</span>//主键\索引不没明确的，也是直接上表锁</span><br></pre></td></tr></table></figure>
+
+<p>这个时候就清楚了for update，再来探究select 是如何导致死锁的</p>
+<p>有两个事物，一个事务按照顺序读取 id =1 和2   另外一个事务按照顺序读取 id =2 和1</p>
+<p>然后又有某个时刻  A事务 读取到id = 1  锁住 id=1的行，不能被其他事务占有</p>
+<p>B事务去读取id=2的行，锁住</p>
+<p>A事务试图去获取id=2的行，不能获得资源，B事务试图去select * from table where id = 1 失败，就造成了死锁的局面</p>
+<h2 id="7-14update时候是什么锁"><a href="#7-14update时候是什么锁" class="headerlink" title="7.14update时候是什么锁"></a>7.14update时候是什么锁</h2><p>这是分情况的 update table set xxx = ‘’ where x = ‘’</p>
+<ol>
+<li>如果是where条件后面的条件不是索引，那么就会造成是表锁</li>
+<li>如果where条件后面的列有索引，那么就是行锁</li>
+<li>where后面查询条件有多个查询条件，也是不唯一的，那么就是表锁</li>
+</ol>
+<h2 id="7-15InnoDB和MyISAM数据引擎对比"><a href="#7-15InnoDB和MyISAM数据引擎对比" class="headerlink" title="7.15InnoDB和MyISAM数据引擎对比"></a>7.15InnoDB和MyISAM数据引擎对比</h2><p>1.MyIsam不支持事务，InnoDB支持事务</p>
+<p>2.MyIsam只有表锁，锁的颗粒度大，InnoDB还支持行锁，颗粒度更细，但是会造成死锁</p>
+<p>3.MyIsam不支持外键，InnoDB支持外键，所以如果InnoDB写了外键的话从InnoDB转MyIsam会失败</p>
+<p>4.MyIsam可以没有主键，InnoDB必须有主键，如果没有手动设定，也会自动产生一个主键id</p>
+<h1 id="8-KafKa"><a href="#8-KafKa" class="headerlink" title="8.KafKa"></a>8.KafKa</h1><h2 id="8-1-为什么使用Kafka？"><a href="#8-1-为什么使用Kafka？" class="headerlink" title="8.1 为什么使用Kafka？"></a>8.1 为什么使用Kafka？</h2><p>kafka与其他传统的消息队列对比？比如rabbitMQ对比</p>
+<p>应用场景上：</p>
+<p>kafka是处理活跃的流式数据，大数据的数据</p>
+<p>RabbitMQ是用于实时的对可靠性要求比较高的消息队列</p>
+<p>在架构方面：</p>
+<p>kafka遵循一般的MQ结构，为生产者，消费者，和broker</p>
+<p>RabbitMQ则是遵循AMQP协议</p>
+<p>在集群负载均衡方面：</p>
+<p>kafka采用zookeeper对集群中的broker、consumer进行管理，可以注册到topic到zookeeper行</p>
+<h1 id="9-操作系统"><a href="#9-操作系统" class="headerlink" title="9.操作系统"></a>9.操作系统</h1><h2 id="9-1物理内存与虚拟内存的区别和联系"><a href="#9-1物理内存与虚拟内存的区别和联系" class="headerlink" title="9.1物理内存与虚拟内存的区别和联系"></a>9.1物理内存与虚拟内存的区别和联系</h2><p>物理内存：</p>
+<ol>
+<li>就是你本身物理内存条的大小</li>
+<li>就是CPU额地址线可以直接进行寻址的内存空间大小</li>
+</ol>
+<p>虚拟内存：</p>
+<ol>
+<li>即拿出部分硬盘空间来充当内存大小使用，当物理内存占满的时候，电脑就会调用硬盘来充当内存，以缓冲内存紧张的情况，比如当电脑要读取一个比物理内存还要大的程序的时候，就要使用虚拟内存</li>
+<li>计算机的内存大小等于实际物理内存容量加上“分页文件”（就是交换文件）的大小</li>
+<li>它只是内存管理的一种抽象</li>
+</ol>
+<h2 id="9-2物理内存地址和虚拟内存地址的区别？"><a href="#9-2物理内存地址和虚拟内存地址的区别？" class="headerlink" title="9.2物理内存地址和虚拟内存地址的区别？"></a>9.2物理内存地址和虚拟内存地址的区别？</h2><p>前提：计算机会对虚拟内存地址空间（32位为4G）分页产生页（page），对物理内存地址空间（假设256M）分页产生页帧（page frame），这个页和页帧的大小是一样大的，但是页的个数是要大于页帧个数的</p>
+<p>页表：是用来映射虚拟内存中的页号和物理内存中的页帧的，虚拟地址被分成虚拟页号和偏移量，虚拟页号可以作为页表的索引，以用来找到虚拟页对应的页表项，再加上偏移量，形成真正的物理地址</p>
+<p>虚拟内存地址由页号（与页表中的页号关联）和偏移量组成。页号就不必解释了，上面已经说了，页号对应的映射到一个页帧。那么，说说偏移量。偏移量就是我上面说的页（或者页帧）的大小，即这个页（或者页帧）到底能存多少数据。举个例子，有一个虚拟地址它的页号是4，偏移量是20，那么他的寻址过程是这样的：首先到页表中找到页号4对应的页帧号（比如为8），如果页不在内存中，则用失效机制调入页，否则把页帧号和偏移量传给MMU（CPU的内存管理单元）组成一个物理上真正存在的地址，接着就是访问物理内存中的数据了。总结起来说，虚拟内存地址的大小是与地址总线位数相关，物理内存地址的大小跟物理内存条的容量相关</p>
+<h2 id="9-3产生死锁的四个条件"><a href="#9-3产生死锁的四个条件" class="headerlink" title="9.3产生死锁的四个条件"></a>9.3产生死锁的四个条件</h2><ol>
+<li>互斥条件：临界区资源的对线程的互斥，一次只允许一个线程进入到临界区内</li>
+<li>占有和等待条件：线程拿到的资源，线程如果自己不释放则一直占有，其他线程一直等待</li>
+<li>不可抢占条件：其他线程不可以强行抢占线程已经占有的资源</li>
+<li>环路等待条件：各个进程都在等待下一个进程释放掉资源</li>
+</ol>
+<h2 id="9-4处理死锁的策略"><a href="#9-4处理死锁的策略" class="headerlink" title="9.4处理死锁的策略"></a>9.4处理死锁的策略</h2><ol>
+<li>鸵鸟算法：忽略该问题</li>
+<li>检测死锁并恢复</li>
+<li>仔细对资源进行分配</li>
+<li>通过破坏死锁4个条件之一</li>
+</ol>
+<h2 id="9-5避免死锁的方法"><a href="#9-5避免死锁的方法" class="headerlink" title="9.5避免死锁的方法"></a>9.5避免死锁的方法</h2><ol>
+<li>加锁顺序：线程按照一定的顺序加锁</li>
+<li>加锁时限：线程尝试获取锁并设置等待时间，超时则不等待锁资源</li>
+<li>死锁检测</li>
+</ol>
+<h2 id="9-6用户态和内核态切换方式"><a href="#9-6用户态和内核态切换方式" class="headerlink" title="9.6用户态和内核态切换方式"></a>9.6用户态和内核态切换方式</h2><ol>
+<li>系统调用：这是用户态主动切换到内核态的工作方式，比如调用fork()函数，用户态就会切换到内核态因为是使用到了操作系统中的创建新进程的服务</li>
+<li>异常：是被动的切换到内核态，比如在用户态下，因为某些操作造成了意想不到的局面，这个时候就会触发到内核态去处理该异常，比如缺页异常</li>
+<li>外围设备的中断：也是被动的切换到内核态的方法，当外围涉笔完成用户的请求后，会向CPU发起中断信号，然后CPU会暂停下一条将要执行的指令，而去执行与中断有关的指令，那么就会切换到内核态，比如磁盘读写</li>
+</ol>
+<h1 id="10-Redis数据库"><a href="#10-Redis数据库" class="headerlink" title="10.Redis数据库"></a>10.Redis数据库</h1><h2 id="10-1集群原理"><a href="#10-1集群原理" class="headerlink" title="10.1集群原理"></a>10.1集群原理</h2><p>每个单独的地址ip加端口号就是一个独立的集群，要想把其他ip+端口号对应的Redis添加到当前的node节点集群内，就可以使用cluster meet + ip + port 方式进行添加集群，可以通过cluster nodes 来查看当前集群下有多少个集群分布</p>
+<p>当一个node节点使用cluster meet 命令的时候，就是当前node节点与指定ip+端口号进行握手，当握手完成后就完成了集群的添加</p>
+<p>如何判断一个节点是否开启了集群模式？</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200713162334001.png" alt="image-20200713162334001"></p>
+<p>追问：cluster meet <ip> <port> 命令的工作原理是什么？</port></ip></p>
+<p>cluster meet是将其他节点添加到当前集群中的命令，它的工作原理是：</p>
+<p>比如这里有两个节点 A 和B</p>
+<p>A–&gt; cluster meet 127.0.0.1 7001 (B)</p>
+<ol>
+<li>这里A节点会发送一个meet消息给B节点</li>
+<li>B节点收到后会返回一个pong消息</li>
+<li>A节点收到pong消息后，返回一个ping消息给B</li>
+</ol>
+<p>那么他们双方就已经知道他们可以各自进行收发消息了，所以这里A和B的握手就完成啦，然后节点A会通过Gossip协议传播给集群中其他的所有节点， 让其他节点也全部认识新添加进来的B节点，那么B节点就很快会被集群中其他节点所认识，那么握手就全部完成</p>
+<p><strong>槽指派</strong></p>
+<p>在执行完节点添加到集群中后，这个集群并不算是处在上线状态，而是处在线下状态，只有当集群中所有的槽都被各个节点分配后，才处于集群上线状态，一个集群有16384个槽，可以相当于16384个任务，只有所有的任务分配给各个集群中的节点后，这个集群才处于上线状态，不然就会有任务不会被处理，那么就无法正常运行</p>
+<p>比如说集群中A节点 分配了 0 - 8000 个槽 ， B节点分配了8001 到 16383个槽，那么所有的槽都有节点去处理，那么该集群就上线了</p>
+<p>指令 是：cluster addslots  0 1 2 3  4 …..</p>
+<p>如果一个节点宕机了，那么该槽的任务怎么办？</p>
+<p>就出现了从节点的概念，在一个集群中会有部分节点是作为主节点的替代的，也就是从节点，他们随时准备替换掉主节点，即当主节点故障或者有事下线的时候，他们会立即接替主节点所负责的槽，成为一个新的主节点，然后旧主节点恢复重新上线后，它则成为了从节点</p>
+<p><strong>传播节点的槽指派信息</strong></p>
+<p>当每个节点所负责的槽安排完成后，他们各个节点还会通过发送消息的方式，向其他节点告知，自己负责的时候哪些槽。这里的作用就是当客户端发送一个set key value 的时候，会计算key时候是当前node所管理的槽，如果不是，那么就返回用户一个moved错误，让客户端重新到指定的节点去发送set指令，这就是槽传播的作用</p>
+<p>计算key所属于的槽就是通过key的CRC-16校验和 对16383取余</p>
+<h2 id="10-2字符串底层"><a href="#10-2字符串底层" class="headerlink" title="10.2字符串底层"></a>10.2字符串底层</h2><p>虽然Redis是使用C语言来实现的，但是并没有直接使用C语言中的字符串来存储Redis中的字符串常量，而是使用了新的抽象Simple Dynamic string ，SDS来表示Redis中的字符串</p>
+<p>比如</p>
+<p>–&gt;set msg “abc”;</p>
+<p>那么msg和abc就是使用sds来存储的，他就是一个SDS的对象，也就是Redis中的字符串对象</p>
+<p><strong>除了字符串使用了SDS，还有哪里使用了SDS？</strong></p>
+<p>还有AOF持久化存储中的缓存区和客户端状态中的缓存区也使用到了SDS</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200713212826730.png" alt="image-20200713212826730"></p>
+<h3 id="Q-对比C字符串长度和SDS长度获取效率"><a href="#Q-对比C字符串长度和SDS长度获取效率" class="headerlink" title="Q:对比C字符串长度和SDS长度获取效率"></a>Q:对比C字符串长度和SDS长度获取效率</h3><p>在C中获取字符串长度的效率是O(N)，因为你得从最开始遍历到字符串的最后，但是在SDS中的效率是O（1）因为它只需要从sds中读取len属性即可，所以读取长度不再是性能瓶颈</p>
+<h3 id="Q-字符串缓存区溢出问题"><a href="#Q-字符串缓存区溢出问题" class="headerlink" title="Q:字符串缓存区溢出问题"></a>Q:字符串缓存区溢出问题</h3><p>在C中，一个字符串中插入另外一个字符串，如果第二个字符串的长度插入后超过了初始分配的字符串数组的长度，那么就会出现溢出的情况，但是在SDS中并不会溢出，因为在插入的时候，就会进行安全检查，是否会溢出，会溢出，API会自动将SDS的空间扩展到所需要的长度大小</p>
+<h3 id="Q-SDS如何避免重复的扩展字符串？"><a href="#Q-SDS如何避免重复的扩展字符串？" class="headerlink" title="Q:SDS如何避免重复的扩展字符串？"></a>Q:SDS如何避免重复的扩展字符串？</h3><p>如果给一个字符串，不断的将这个字符串扩展，那岂不是不断的创新分配字符数字？是很消耗性能的，所以SDS用了free来存储数字中未使用字节的数目，可以达到空间预分配和惰性空间释放两种策略</p>
+<p>预分配分为两种：</p>
+<ol>
+<li>在SDS修改后，len属性长度是小于1MB的，则分配的free属性与len属性一样</li>
+<li>在SDS修改后，len属性长度大于==1MB，那么free属性就会分配1M的未使用空间</li>
+</ol>
+<h2 id="10-3list链表底层"><a href="#10-3list链表底层" class="headerlink" title="10.3list链表底层"></a>10.3list链表底层</h2><p>在Redis中链表是一个双向链表NodeList，用List数据结构来持有NodeList</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101051520.png" alt="image-20200714101051520"></p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101108177.png" alt="image-20200714101108177"></p>
+<p>Redis中使用链表实现的功能：链表键、发布和订阅、慢查询、监视器等</p>
+<h2 id="10-4字典底层"><a href="#10-4字典底层" class="headerlink" title="10.4字典底层"></a>10.4字典底层</h2><p>–&gt;set msg “123” 就是通过字典来实现的</p>
+<p>Redis中的字典使用的是Hash表来实现</p>
+<p><img src="/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/image-20200714101529881.png" alt="image-20200714101529881"></p>
+<p>字典中table属性就是一个数字，存储dictEntry节点，每个节点除了存储key value外还包括了next属性，指向下一个在数组中相同位置的entry节点，也就是等同于Java 1.7中的HashMap的实现，数组+链表的形式，链表的含义就是要解决hash冲突的问题</p>
+<p>在Redis中，字典里面会包含两张hash表，第一张hash表里面才是真正来存key-value对的，首先会根据key来计算它存储在哪一张表上，再通过一次hash计算，算出它应该在表内的索引位置，第二张hash表用来为rehash做准备</p>
+<h1 id="11-微服务"><a href="#11-微服务" class="headerlink" title="11.微服务"></a>11.微服务</h1><h2 id="11-1限流器"><a href="#11-1限流器" class="headerlink" title="11.1限流器"></a>11.1限流器</h2><p>微服务就是为了将服务进行颗粒度微小化，将每一个服务都可以模块化，暴露接口给其他异构系统去使用调用，但是也有一个问题，就是当某个活动使得流量突增，那个服务的接口承受不住，就会压垮当前那个服务器，使服务器宕机，那么该服务器上面的其他服务，也会死亡掉，所有就有了限流器，顾名思义。限流器，就是限制流量进来的数量，限流器的策略也有三种，常用的就是wait策略，进行阻塞，多余的流量</p>
+<h2 id="11-2-熔断器"><a href="#11-2-熔断器" class="headerlink" title="11.2 熔断器"></a>11.2 熔断器</h2><p>熔断器，也是一种在流量突增的情况下的一种保护服务的机制，它可以防止雪崩效应，即当前服务死了，其他依赖次服务的都死。熔断器就是在某一个服务器死后，其他依赖次服务的服务，都不在访问依赖次服务</p>
+<p>熔断器有三种状态：</p>
+<ul>
+<li><code>关闭</code>状态：服务正常，并维护一个失败率统计，当失败率达到阀值时，转到<code>开启</code>状态</li>
+<li><code>开启</code>状态：服务异常，调用 fallback 函数，一段时间之后，进入<code>半开启</code>状态</li>
+<li><code>半开启</code>装态：尝试恢复服务，失败率高于阀值，进入<code>开启</code>状态，低于阀值，进入<code>关闭</code>状态</li>
+</ul>
+<h2 id="11-3微服务概念"><a href="#11-3微服务概念" class="headerlink" title="11.3微服务概念"></a>11.3微服务概念</h2><p>微服务架构风格是一种将单个应用程序作为一套小型服务来开发的方法，每个服务都运行在自己的进程中，并与轻量级机制（通常是HTTP、RPC调用资源API方式出现）进行通信。这些服务是围绕业务功能构建的，可以通过全自动部署机制独立部署。这些服务的集中管理最少，可以用不同的编程语言编写，并使用不同的数据存储技术。</p>
+<h2 id="11-4为什么需要玩网关"><a href="#11-4为什么需要玩网关" class="headerlink" title="11.4为什么需要玩网关"></a>11.4为什么需要玩网关</h2><p>优点:</p>
+<p>1.网关可以暴露给外界客户端一个统一的API接口，那么就可以屏蔽到微服务内部自己的API接口，以及实现细节，当内部进行改动的时候，是不需要通知客户端的</p>
+<p>2.为服务层增加额外的安全层</p>
+<p>API网关通过提供额外的安全层，帮助阻止大规模的攻击:比如Dos攻击、sql注入、xml解析等</p>
+<p>3.支持混合式通讯协议</p>
+<p>通过网关暴露的API一般使用HTTP或者REST进行通讯，但是内部却可以使用不同的通讯方式，只是通讯双方是互相协商好的即可</p>
+<p>缺点:</p>
+<p>1.要正确的管理网关路由的配置，以保障API能被争取的路由到微服务上</p>
+<p>2.架构要高可用、可扩展，不然API网关很有可能成为性能瓶颈</p>
+<h2 id="11-5微服务几个核心组件-用SpringCloud举例"><a href="#11-5微服务几个核心组件-用SpringCloud举例" class="headerlink" title="11.5微服务几个核心组件-用SpringCloud举例"></a>11.5微服务几个核心组件-用SpringCloud举例</h2><p><a href="https://blog.csdn.net/qq_41701956/article/details/83829539" target="_blank" rel="noopener">https://blog.csdn.net/qq_41701956/article/details/83829539</a></p>
+<p>1.服务的注册服务Eureka</p>
+<p>2.内部服务的请求发起Feign</p>
+<p>3.基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求Ribbon</p>
+<p>4.发起请求是通过Hystrix的线程池来走的，不同的服务走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩的问题Hystrix</p>
+<p>5.外部访问微服务的统一网关Zuul</p>
+<h1 id="12-Mybatis"><a href="#12-Mybatis" class="headerlink" title="12.Mybatis"></a>12.Mybatis</h1><h2 id="1-Mysql数据类型转到Java问题"><a href="#1-Mysql数据类型转到Java问题" class="headerlink" title="1.Mysql数据类型转到Java问题"></a>1.Mysql数据类型转到Java问题</h2><p>Q:数据库timestamp数据类型转到Java中的Date，用Mybatis，会产生什么问题吗？以及它是如何实现从timestamp转换到Date数据类型的，其他数据库类型是否也可以转换？</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Java"><span class="toc-number">1.</span> <span class="toc-text">1.Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1Java基础"><span class="toc-number">1.1.</span> <span class="toc-text">1.1Java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java四个基本特性"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.Java四个基本特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Object类及其方法实现（尤其是equals-and-hashCode-）"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.Object类及其方法实现（尤其是equals() and hashCode()）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本数据类型与引用数据类型"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.基本数据类型与引用数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Exception-vs-Error"><span class="toc-number">1.1.4.</span> <span class="toc-text">3.Exception vs Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-finally-vs-final-vs-finalize"><span class="toc-number">1.1.5.</span> <span class="toc-text">4.finally vs final vs finalize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-重载-vs-重写"><span class="toc-number">1.1.6.</span> <span class="toc-text">5.重载 vs 重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口-vs-抽象类"><span class="toc-number">1.1.7.</span> <span class="toc-text">6.接口 vs 抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-深克隆-vs-浅克隆"><span class="toc-number">1.1.8.</span> <span class="toc-text">7.深克隆 vs 浅克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-String-vs-StringBuffer-vs-StringBuilder-（底层实现）"><span class="toc-number">1.1.9.</span> <span class="toc-text">8.String vs StringBuffer vs StringBuilder （底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-BIO-vs-NIO-vs-AIO"><span class="toc-number">1.1.10.</span> <span class="toc-text">9.BIO vs NIO vs AIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-反射与动态代理"><span class="toc-number">1.1.11.</span> <span class="toc-text">10.反射与动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11静态代理和动态代理"><span class="toc-number">1.1.12.</span> <span class="toc-text">11静态代理和动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-序列化与反序列化（底层实现）"><span class="toc-number">1.1.13.</span> <span class="toc-text">12.序列化与反序列化（底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-泛型的实现原理"><span class="toc-number">1.1.14.</span> <span class="toc-text">13.泛型的实现原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-集合框架-应用及源码分析"><span class="toc-number">1.2.</span> <span class="toc-text">1.2.集合框架 (应用及源码分析)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1集合框架的设计与所有的继承关系"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1集合框架的设计与所有的继承关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2Vector-vs-ArrayList-vs-LinkedList"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2Vector vs ArrayList vs LinkedList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3HashTable-vs-HashMap-vs-TreeMap-vs-ConcurrentHashMap"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3HashTable vs HashMap vs TreeMap vs ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4HashSet-vs-TreeSet"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4HashSet vs TreeSet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-HashSet的唯一性"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">Q.HashSet的唯一性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q：TressSet和HashSet是如何保证元素有序的？"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">Q：TressSet和HashSet是如何保证元素有序的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-如何保证TreeSet的唯一性："><span class="toc-number">1.2.4.3.</span> <span class="toc-text">Q:如何保证TreeSet的唯一性：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-HashMap链表长度到8变成红黑树，为什么是8"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.2.5 HashMap链表长度到8变成红黑树，为什么是8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-线程安全的HashMap"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.2.线程安全的HashMap</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-多线程"><span class="toc-number">1.3.</span> <span class="toc-text">1.3.多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1线程的创建方式"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1线程的创建方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2多线程应用场景"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2多线程应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3线程状态与转换"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3线程状态与转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4线程安全与同步机制：volatile-vs-synchronized-vs-Lock-ReentrantLock"><span class="toc-number">1.3.4.</span> <span class="toc-text">1.3.4线程安全与同步机制：volatile vs synchronized vs Lock(ReentrantLock)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5volatile底层原理"><span class="toc-number">1.3.5.</span> <span class="toc-text">1.3.5volatile底层原理 ?????</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-6synchronized底层原理及其锁的升级与降级"><span class="toc-number">1.3.6.</span> <span class="toc-text">1.3.6synchronized底层原理及其锁的升级与降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-7Lock-ReentrantLock-底层原理"><span class="toc-number">1.3.7.</span> <span class="toc-text">1.3.7Lock(ReentrantLock)底层原理 ??</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-8ThreadLocal"><span class="toc-number">1.3.8.</span> <span class="toc-text">1.3.8ThreadLocal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-9线程通信"><span class="toc-number">1.3.9.</span> <span class="toc-text">1.3.9线程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-10线程池（底层实现）"><span class="toc-number">1.3.10.</span> <span class="toc-text">1.3.10线程池（底层实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-11死锁的出现场景、定位以及修复"><span class="toc-number">1.3.11.</span> <span class="toc-text">1.3.11死锁的出现场景、定位以及修复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-12CAS-与-Atomic-类型实现原理"><span class="toc-number">1.3.12.</span> <span class="toc-text">1.3.12CAS 与 Atomic*类型实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-13AQS：并发包基础技术"><span class="toc-number">1.3.13.</span> <span class="toc-text">1.3.13AQS：并发包基础技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-14Java并发包（java-util-concurrent及其子包）提供的并发工具类"><span class="toc-number">1.3.14.</span> <span class="toc-text">1.3.14Java并发包（java.util.concurrent及其子包）提供的并发工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-15阻塞队列"><span class="toc-number">1.3.15.</span> <span class="toc-text">1.3.15阻塞队列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-JVM"><span class="toc-number">1.4.</span> <span class="toc-text">4.JVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1JVM运行时数据区域-vs-Java内存模型-（这2不一样！！！）"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1JVM运行时数据区域 vs Java内存模型 （这2不一样！！！）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.4.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2内存泄露、内存溢出以及栈溢出"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.2内存泄露、内存溢出以及栈溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3JVM类加载机制及其作用与对象的初始化"><span class="toc-number">1.4.4.</span> <span class="toc-text">1.4.3JVM类加载机制及其作用与对象的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4MinorGC和FullGC"><span class="toc-number">1.4.5.</span> <span class="toc-text">1.4.4MinorGC和FullGC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5垃圾回收算法"><span class="toc-number">1.4.6.</span> <span class="toc-text">1.4.5垃圾回收算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5垃圾回收器"><span class="toc-number">1.4.7.</span> <span class="toc-text">1.4.5垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-6常用JVM参数"><span class="toc-number">1.4.8.</span> <span class="toc-text">1.4.6常用JVM参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Spring"><span class="toc-number">2.</span> <span class="toc-text">2.Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1bean的生命周期"><span class="toc-number">2.1.</span> <span class="toc-text">2.1bean的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2Spring-IOC"><span class="toc-number">2.2.</span> <span class="toc-text">2.2Spring IOC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3循环依赖的产生和解决？？？？"><span class="toc-number">2.3.</span> <span class="toc-text">2.3循环依赖的产生和解决？？？？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4动态代理的原理"><span class="toc-number">2.4.</span> <span class="toc-text">2.4动态代理的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5BeanFactory和FactoryBean的区别"><span class="toc-number">2.5.</span> <span class="toc-text">2.5BeanFactory和FactoryBean的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6SpringBoot常用注解"><span class="toc-number">2.6.</span> <span class="toc-text">2.6SpringBoot常用注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7SpringBoot热部署的方式"><span class="toc-number">2.7.</span> <span class="toc-text">2.7SpringBoot热部署的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-Resource-和-Autowire对比"><span class="toc-number">2.8.</span> <span class="toc-text">2.8@Resource 和@Autowire对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-数据结构"><span class="toc-number">3.</span> <span class="toc-text">3.数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1各种树"><span class="toc-number">3.1.</span> <span class="toc-text">3.1各种树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1二叉树"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2满二叉树"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2满二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3完全二叉树"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3完全二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4平衡二叉树"><span class="toc-number">3.1.4.</span> <span class="toc-text">3.1.4平衡二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-5最优二叉树"><span class="toc-number">3.1.5.</span> <span class="toc-text">3.1.5最优二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-6二叉搜索树"><span class="toc-number">3.1.6.</span> <span class="toc-text">3.1.6二叉搜索树</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-经典算法"><span class="toc-number">4.</span> <span class="toc-text">4.经典算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1topk问题"><span class="toc-number">4.1.</span> <span class="toc-text">4.1topk问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2链表有环"><span class="toc-number">4.2.</span> <span class="toc-text">4.2链表有环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3三个数之和"><span class="toc-number">4.3.</span> <span class="toc-text">4.3三个数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4常见的排序算法"><span class="toc-number">4.4.</span> <span class="toc-text">4.4常见的排序算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-综合问题"><span class="toc-number">5.</span> <span class="toc-text">5.综合问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1单点登录"><span class="toc-number">5.1.</span> <span class="toc-text">5.1单点登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1同域下的单点登录"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.1同域下的单点登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2不同域下的单点登录"><span class="toc-number">5.1.2.</span> <span class="toc-text">1.2不同域下的单点登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-CSRF攻击"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 CSRF攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3Redis与Mysql数据不一致问题"><span class="toc-number">5.3.</span> <span class="toc-text">5.3Redis与Mysql数据不一致问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4集群和分布式的区别"><span class="toc-number">5.4.</span> <span class="toc-text">5.4集群和分布式的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5如何破坏单例模式"><span class="toc-number">5.5.</span> <span class="toc-text">5.5如何破坏单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6幂等性问题引发的思考"><span class="toc-number">5.6.</span> <span class="toc-text">5.6幂等性问题引发的思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7线上发生死锁怎么办？"><span class="toc-number">5.7.</span> <span class="toc-text">5.7线上发生死锁怎么办？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8Redis集群和Mysql集群对比"><span class="toc-number">5.8.</span> <span class="toc-text">5.8Redis集群和Mysql集群对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-计算机网络"><span class="toc-number">6.</span> <span class="toc-text">6.计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1http1-0-1-1-2-0"><span class="toc-number">6.1.</span> <span class="toc-text">6.1http1.0\1.1\2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2HTTP、HTTPS"><span class="toc-number">6.2.</span> <span class="toc-text">6.2HTTP、HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3Cookie和Session机制"><span class="toc-number">6.3.</span> <span class="toc-text">6.3Cookie和Session机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4状态码"><span class="toc-number">6.4.</span> <span class="toc-text">6.4状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5HTTP请求头"><span class="toc-number">6.5.</span> <span class="toc-text">6.5HTTP请求头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-6URL和URI的区别"><span class="toc-number">6.6.</span> <span class="toc-text">6.6URL和URI的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-Mysql数据库"><span class="toc-number">7.</span> <span class="toc-text">7.Mysql数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1数据库SQl注入"><span class="toc-number">7.1.</span> <span class="toc-text">7.1数据库SQl注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2Limit原理"><span class="toc-number">7.2.</span> <span class="toc-text">7.2Limit原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3Redo日志"><span class="toc-number">7.3.</span> <span class="toc-text">7.3Redo日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4普通索引和唯一索引该如何选择？"><span class="toc-number">7.4.</span> <span class="toc-text">7.4普通索引和唯一索引该如何选择？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5如何给字符串添加索引比较优化？"><span class="toc-number">7.5.</span> <span class="toc-text">7.5如何给字符串添加索引比较优化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6DateTime和TimeStamp的区别"><span class="toc-number">7.6.</span> <span class="toc-text">7.6DateTime和TimeStamp的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-7脏读、重复读、幻读三种理解"><span class="toc-number">7.7.</span> <span class="toc-text">7.7脏读、重复读、幻读三种理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-8大体量数据加入数据库的解决方案"><span class="toc-number">7.8.</span> <span class="toc-text">7.8大体量数据加入数据库的解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-9Mysql性能分析"><span class="toc-number">7.9.</span> <span class="toc-text">7.9Mysql性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-10-数据库基本数据类型"><span class="toc-number">7.10.</span> <span class="toc-text">7.10 数据库基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-11为什么选择B-树作为索引的存储数据结构"><span class="toc-number">7.11.</span> <span class="toc-text">7.11为什么选择B+树作为索引的存储数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-12主从复制的复制是如何工作的"><span class="toc-number">7.12.</span> <span class="toc-text">7.12主从复制的复制是如何工作的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-13数据库的select死锁如何产生"><span class="toc-number">7.13.</span> <span class="toc-text">7.13数据库的select死锁如何产生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-14update时候是什么锁"><span class="toc-number">7.14.</span> <span class="toc-text">7.14update时候是什么锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-15InnoDB和MyISAM数据引擎对比"><span class="toc-number">7.15.</span> <span class="toc-text">7.15InnoDB和MyISAM数据引擎对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-KafKa"><span class="toc-number">8.</span> <span class="toc-text">8.KafKa</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-为什么使用Kafka？"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 为什么使用Kafka？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-操作系统"><span class="toc-number">9.</span> <span class="toc-text">9.操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1物理内存与虚拟内存的区别和联系"><span class="toc-number">9.1.</span> <span class="toc-text">9.1物理内存与虚拟内存的区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2物理内存地址和虚拟内存地址的区别？"><span class="toc-number">9.2.</span> <span class="toc-text">9.2物理内存地址和虚拟内存地址的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3产生死锁的四个条件"><span class="toc-number">9.3.</span> <span class="toc-text">9.3产生死锁的四个条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4处理死锁的策略"><span class="toc-number">9.4.</span> <span class="toc-text">9.4处理死锁的策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5避免死锁的方法"><span class="toc-number">9.5.</span> <span class="toc-text">9.5避免死锁的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-6用户态和内核态切换方式"><span class="toc-number">9.6.</span> <span class="toc-text">9.6用户态和内核态切换方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-Redis数据库"><span class="toc-number">10.</span> <span class="toc-text">10.Redis数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1集群原理"><span class="toc-number">10.1.</span> <span class="toc-text">10.1集群原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2字符串底层"><span class="toc-number">10.2.</span> <span class="toc-text">10.2字符串底层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-对比C字符串长度和SDS长度获取效率"><span class="toc-number">10.2.1.</span> <span class="toc-text">Q:对比C字符串长度和SDS长度获取效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-字符串缓存区溢出问题"><span class="toc-number">10.2.2.</span> <span class="toc-text">Q:字符串缓存区溢出问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-SDS如何避免重复的扩展字符串？"><span class="toc-number">10.2.3.</span> <span class="toc-text">Q:SDS如何避免重复的扩展字符串？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3list链表底层"><span class="toc-number">10.3.</span> <span class="toc-text">10.3list链表底层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4字典底层"><span class="toc-number">10.4.</span> <span class="toc-text">10.4字典底层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-微服务"><span class="toc-number">11.</span> <span class="toc-text">11.微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1限流器"><span class="toc-number">11.1.</span> <span class="toc-text">11.1限流器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-熔断器"><span class="toc-number">11.2.</span> <span class="toc-text">11.2 熔断器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3微服务概念"><span class="toc-number">11.3.</span> <span class="toc-text">11.3微服务概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4为什么需要玩网关"><span class="toc-number">11.4.</span> <span class="toc-text">11.4为什么需要玩网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-5微服务几个核心组件-用SpringCloud举例"><span class="toc-number">11.5.</span> <span class="toc-text">11.5微服务几个核心组件-用SpringCloud举例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-Mybatis"><span class="toc-number">12.</span> <span class="toc-text">12.Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mysql数据类型转到Java问题"><span class="toc-number">12.1.</span> <span class="toc-text">1.Mysql数据类型转到Java问题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&text=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&is_video=false&description=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=秋招面试个人知识总结&body=Check out this article: https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&title=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&name=秋招面试个人知识总结&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/06/25/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E8%AF%95%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/&t=秋招面试个人知识总结" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2020
+    Jenkooo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3611d43b4ebdcc59c13f6739c83aac46";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

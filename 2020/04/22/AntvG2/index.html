@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Chart图标的组成 Chart图表布局 当设置了forceFit:true后，宽度则根据父容器来计算，可以不用设置 但是要设置高度，不然就使用默认的500px Attribute 图形属性 position：位置，二维坐标系内映射至 x 轴、y 轴； color：颜色，包含了色调、饱和度和亮度； size：大小，不同的几何标记对大小的定义有差异； shape：形状，几何标记的形状决定了某个具体图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AntvG2总结">
+<meta property="og:url" content="https://hardingyang.github.io/2020/04/22/AntvG2/index.html">
+<meta property="og:site_name" content="Jenkooo">
+<meta property="og:description" content="Chart图标的组成 Chart图表布局 当设置了forceFit:true后，宽度则根据父容器来计算，可以不用设置 但是要设置高度，不然就使用默认的500px Attribute 图形属性 position：位置，二维坐标系内映射至 x 轴、y 轴； color：颜色，包含了色调、饱和度和亮度； size：大小，不同的几何标记对大小的定义有差异； shape：形状，几何标记的形状决定了某个具体图">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200302145836770.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200302192028873.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200226170323481.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200302114817214.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200226214653609.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200226221949759.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200303152549364.png">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*JMXTSrJ8C5EAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TjaMQbS6dOEAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*sySwT7tOwq4AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*3fjORIEQExcAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TkmrRZ7IYzAAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*R0OCS6z_FuUAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ieFFTadrXS0AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*kKyZQKEop80AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*VMP6SYj4DiAAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*z4-OQY5NNV4AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*JX6QRoleT_gAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*yPZ8TI--rm8AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*6dPmQL7ko4MAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*2sfDR48-z60AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*vAYUT4s9dkwAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*h1pTTLjppRQAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*II28TZCn_IIAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*wf_AQaNchFcAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*b3TVR5DomK0AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200304210242960.png">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*SccqSpP2hG4AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*KYTbSbvRKHQAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*hd7PQ4z_JS8AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*PdjoSrdEhnwAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*VEOZR5rXpqMAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*cp2jSJfeJDYAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*h-e2TLivyI4AAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*NHbSRKacUesAAAAAAAAAAABkARQnAQ">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155258712.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155428723.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155511610.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155637839.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155736543.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155813669.png">
+<meta property="og:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155855971.png">
+<meta property="article:published_time" content="2020-04-22T14:13:37.569Z">
+<meta property="article:modified_time" content="2020-04-15T05:38:06.212Z">
+<meta property="article:author" content="Jenkooo">
+<meta property="article:tag" content="总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hardingyang.github.io/2020/04/22/AntvG2/image-20200302145836770.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>AntvG2总结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/04/22/How-to-get-started-with-keras-deep-learning/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/04/22/AntvG2/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/04/22/AntvG2/&text=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/04/22/AntvG2/&is_video=false&description=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AntvG2总结&body=Check out this article: https://hardingyang.github.io/2020/04/22/AntvG2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/04/22/AntvG2/&name=AntvG2总结&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/04/22/AntvG2/&t=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chart图标的组成"><span class="toc-number">1.</span> <span class="toc-text">Chart图标的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chart图表布局"><span class="toc-number">2.</span> <span class="toc-text">Chart图表布局</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Attribute-图形属性"><span class="toc-number">3.</span> <span class="toc-text">Attribute 图形属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#size"><span class="toc-number">3.1.</span> <span class="toc-text">size</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Guide辅助元素"><span class="toc-number">4.</span> <span class="toc-text">Guide辅助元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标轴axis"><span class="toc-number">5.</span> <span class="toc-text">坐标轴axis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标系coordinate"><span class="toc-number">6.</span> <span class="toc-text">坐标系coordinate</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#坐标系类型"><span class="toc-number">6.1.</span> <span class="toc-text">坐标系类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#极坐标系"><span class="toc-number">6.2.</span> <span class="toc-text">极坐标系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#度量Scale"><span class="toc-number">7.</span> <span class="toc-text">度量Scale</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图例-Legend"><span class="toc-number">8.</span> <span class="toc-text">图例 Legend</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#marker"><span class="toc-number">8.1.</span> <span class="toc-text">marker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#几何标记-Geometry"><span class="toc-number">9.</span> <span class="toc-text">几何标记 Geometry</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#提示信息-Tooltip"><span class="toc-number">10.</span> <span class="toc-text">提示信息 Tooltip</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内置属性"><span class="toc-number">10.1.</span> <span class="toc-text">内置属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crosshairs"><span class="toc-number">10.2.</span> <span class="toc-text">crosshairs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#marker-1"><span class="toc-number">10.3.</span> <span class="toc-text">marker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图形标注-Annotation"><span class="toc-number">11.</span> <span class="toc-text">图形标注 Annotation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#图表标注类型"><span class="toc-number">11.1.</span> <span class="toc-text">图表标注类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#交互interaction"><span class="toc-number">12.</span> <span class="toc-text">交互interaction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内置的交互"><span class="toc-number">12.1.</span> <span class="toc-text">内置的交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置交互"><span class="toc-number">12.2.</span> <span class="toc-text">配置交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#所有交互"><span class="toc-number">12.3.</span> <span class="toc-text">所有交互</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#视图View"><span class="toc-number">13.</span> <span class="toc-text">视图View</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义Shape"><span class="toc-number">14.</span> <span class="toc-text">自定义Shape</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        AntvG2总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jenkooo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-22T14:13:37.569Z" itemprop="datePublished">2020-04-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a> › <a class="category-link" href="/categories/%E7%AC%94%E8%AE%B0/AntvG2/">AntvG2</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Chart图标的组成"><a href="#Chart图标的组成" class="headerlink" title="Chart图标的组成"></a>Chart图标的组成</h1><p><img src="/2020/04/22/AntvG2/image-20200302145836770.png" alt></p>
+<h1 id="Chart图表布局"><a href="#Chart图表布局" class="headerlink" title="Chart图表布局"></a>Chart图表布局</h1><p><img src="/2020/04/22/AntvG2/image-20200302192028873.png" alt="image-20200302192028873"></p>
+<p>当设置了forceFit:true后，宽度则根据父容器来计算，可以不用设置</p>
+<p>但是要设置高度，不然就使用默认的500px</p>
+<h1 id="Attribute-图形属性"><a href="#Attribute-图形属性" class="headerlink" title="Attribute 图形属性"></a>Attribute 图形属性</h1><ol>
+<li>position：位置，二维坐标系内映射至 x 轴、y 轴；</li>
+<li>color：颜色，包含了色调、饱和度和亮度；</li>
+<li>size：大小，不同的几何标记对大小的定义有差异；</li>
+<li>shape：形状，几何标记的形状决定了某个具体图表类型的表现形式，例如点图，可以使用圆点、三角形、图片表示；线图可以有折线、曲线、点线等表现形式；</li>
+<li>opacity：透明度，图形的透明度，这个属性从某种意义上来说可以使用颜色代替，需要使用 ‘rgba’ 的形式，所以在 G2 中我们独立出来。</li>
+</ol>
+<p>出现的情况是</p>
+<p>chart.<geomType>.position().color().size().shape()…</geomType></p>
+<h2 id="size"><a href="#size" class="headerlink" title="size"></a>size</h2><p>对于不同的几何标记，size有不同的意思</p>
+<ul>
+<li>对于 point 点来说，size 对应着点的半径；</li>
+<li>对于 line 线来说，size 对应着线的粗细；</li>
+<li>对于 interval 柱状图来说，size 对应着柱子的宽度。</li>
+</ul>
+<p>在 G2 中，支持如下几种方式的映射语法：</p>
+<ul>
+<li>size(‘field’)，指定映射到 size 的字段，使用内置的默认大小范围为 [1, 10]；</li>
+<li>size(‘field’, [ min, max ])，指定映射到 size 字段外，还提供了 size 的最大值和最小值范围；</li>
+<li>size(‘fields’, callback)，使用回调函数映射 size，用于个性化的 size 定制，可以使用多个字段进行映射；</li>
+<li>size(10) 直接指定像素大小。</li>
+</ul>
+<p>size都以点这种情况出现</p>
+<h1 id="Guide辅助元素"><a href="#Guide辅助元素" class="headerlink" title="Guide辅助元素"></a>Guide辅助元素</h1><p><img src="/2020/04/22/AntvG2/image-20200226170323481.png" alt="image-20200226170323481"></p>
+<p>G2 目前支持 <strong>9</strong> 种辅助标记类型：</p>
+<ul>
+<li>line：辅助线（可带文本），例如表示平均值或者预期分布的直线；</li>
+<li>image：辅助图片，在图表上添加辅助图片；</li>
+<li>text：辅助文本，指定位置添加文本说明；</li>
+<li>region：辅助框，框选一段图区，设置背景、边框等；</li>
+<li>regionFilter: 区域着色，将图表中位于矩形选区中的图形元素提取出来，重新着色；</li>
+<li>html：辅助 html，指定位置添加自定义 html，显示自定义信息；</li>
+<li><strong>arc</strong>：辅助弧线。</li>
+<li>dataMarker: 特殊数据点标注，多用于折线图和面积图</li>
+<li>dataRegion: 特殊数据区间标注，多用于折线图和面积图</li>
+</ul>
+<p>常见的出现方式是：chart.guide().line(cfg)</p>
+<h1 id="坐标轴axis"><a href="#坐标轴axis" class="headerlink" title="坐标轴axis"></a>坐标轴axis</h1><p>在 G2 中，坐标轴是自动生成的，它的内容是由 scale 度量控制的，而渲染的细节则是由主题控制。</p>
+<p><img src="/2020/04/22/AntvG2/image-20200302114817214.png" alt="image-20200302114817214"></p>
+<h1 id="坐标系coordinate"><a href="#坐标系coordinate" class="headerlink" title="坐标系coordinate"></a>坐标系coordinate</h1><p>关键字是coordinate</p>
+<h2 id="坐标系类型"><a href="#坐标系类型" class="headerlink" title="坐标系类型"></a>坐标系类型</h2><table>
+<thead>
+<tr>
+<th><code>rect</code></th>
+<th>直角坐标系，目前仅支持二维，由 x, y 两个互相垂直的坐标轴构成。（默认）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>polar</code></td>
+<td>极坐标系，由角度和半径 2 个维度构成。（重要）</td>
+</tr>
+<tr>
+<td><code>theta</code></td>
+<td>一种特殊的极坐标系，半径长度固定，仅仅将数据映射到角度，常用于饼图的绘制。</td>
+</tr>
+<tr>
+<td><code>helix</code></td>
+<td>螺旋坐标系，基于阿基米德螺旋线。</td>
+</tr>
+</tbody></table>
+<p><img src="/2020/04/22/AntvG2/image-20200226214653609.png" alt="image-20200226214653609"></p>
+<h2 id="极坐标系"><a href="#极坐标系" class="headerlink" title="极坐标系"></a>极坐标系</h2><p>特别的属性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法名</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">radius</td>
+<td align="left">半径长度，0-1 范围内的数值，最终的半径长度 = min（长，宽） / 2 * radius</td>
+</tr>
+<tr>
+<td align="left">innerRadius</td>
+<td align="left">plus 坐标系下，内部空白的半径大小，空白的半径 = min（长，宽） / 2 * inner</td>
+</tr>
+<tr>
+<td align="left">startAngle</td>
+<td align="left">极坐标的起始角度</td>
+</tr>
+<tr>
+<td align="left">endAngle</td>
+<td align="left">极坐标的结束角度</td>
+</tr>
+</tbody></table>
+<p><img src="/2020/04/22/AntvG2/image-20200226221949759.png" alt="image-20200226221949759"></p>
+<h1 id="度量Scale"><a href="#度量Scale" class="headerlink" title="度量Scale"></a>度量Scale</h1><p>用于定义数据的类型和展示方式，作用</p>
+<ul>
+<li>生成坐标轴刻度值</li>
+<li>显示图例项</li>
+<li>格式化数据展示的文本</li>
+</ul>
+<p>配置的方式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">	&#123;<span class="attr">type</span>:<span class="string">'abc'</span>,<span class="attr">value</span>:<span class="number">213</span>&#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment">//方式1，针对某一个field</span></span><br><span class="line">chart.scale(<span class="string">'type'</span>,&#123;</span><br><span class="line">	tickCount:<span class="number">3</span>,</span><br><span class="line">	nice:<span class="number">3</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//方式2，同时对两个一起配置</span></span><br><span class="line">view.scale(&#123;</span><br><span class="line">	type:&#123;</span><br><span class="line">		tickCount:<span class="number">3</span></span><br><span class="line">	&#125;,</span><br><span class="line">	value:&#123;</span><br><span class="line">		tickCount:<span class="number">3</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="图例-Legend"><a href="#图例-Legend" class="headerlink" title="图例 Legend"></a>图例 Legend</h1><p>图例分为：分类图例和连续图例</p>
+<p>分类图例的组成部分:</p>
+<p><img src="/2020/04/22/AntvG2/image-20200303152549364.png" alt="image-20200303152549364"></p>
+<p>LegenConfig可以配置的部分属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">解释</th>
+<th align="left">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">position</td>
+<td align="left">图例的显示位置，支持 12 个定位位置，配置值 ‘left-top’,’left-center’,’left-bottom’,’right-top’,’right-top’,’right-bottom’,’top-left’,’top-center’,’top-bottom’,’bottom-left’,’bottom-center’,’bottom-right’。也可使用’left’（默认为 left-bottom’),’right’（默认为’right-bottom’),’top’（默认为 top-center’),’bottom’（默认为 bottom-center’) 定位。</td>
+<td align="left">‘bottom-center’</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">用于图例标题的显示样式配置，如果值为 null 则不展示。</td>
+<td align="left">左右两侧图例默认展示标题，上下图例默认不展示标题</td>
+</tr>
+<tr>
+<td align="left">background</td>
+<td align="left">用于图例背景色的配置</td>
+<td align="left">默认没有背景色</td>
+</tr>
+<tr>
+<td align="left">offsetX</td>
+<td align="left">整个图例的水平偏移距离</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">offsetY</td>
+<td align="left">整个图例的垂直偏移距离</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">width</td>
+<td align="left">图例的整体宽度（用于连续图例）</td>
+<td align="left">20</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">图例的整体高度（用于连续图例）</td>
+<td align="left">156</td>
+</tr>
+<tr>
+<td align="left">autoWrap</td>
+<td align="left">图例项过多时是否自动换行（用于分类图例）</td>
+<td align="left">true，自动换行</td>
+</tr>
+<tr>
+<td align="left">marker</td>
+<td align="left">配置图例 marker 的显示样式，支持指定 <code>point</code> 几何标记支持的所有 shape（除去 ‘rect’)：’circle’, ‘square’, ‘bowtie’, ‘diamond’, ‘hexagon’, ‘triangle’, ‘triangle-down’, ‘hollowCircle’, ‘hollowSquare’, ‘hollowBowtie’, ‘hollowDiamond’, ‘hollowHexagon’, ‘hollowTriangle’, ‘hollowTriangle-down’, ‘cross’, ‘tick’, ‘plus’, ‘hyphen’, ‘line’</td>
+<td align="left">不同的几何标记不同的 marker</td>
+</tr>
+<tr>
+<td align="left">attachLast</td>
+<td align="left">是否启用尾部跟随图例（适用于<code>line</code>、<code>lineStack</code>、<code>area</code>、<code>areaStack</code>图表类型）</td>
+<td align="left">false</td>
+</tr>
+<tr>
+<td align="left">clickable</td>
+<td align="left">图例项是否可以点击</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">hoverable</td>
+<td align="left">是否默认开启鼠标 hover 到图例项上的交互</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">selectedMode</td>
+<td align="left">clickable 为 true 时生效，图例的选中模式，单选或者多选</td>
+<td align="left">‘multiple’ 默认多选</td>
+</tr>
+<tr>
+<td align="left">onHover</td>
+<td align="left">自定义图例项鼠标 hover 事件，hoverable 为 false 不生效</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">onClick</td>
+<td align="left">自定义图例项点击事件， clickable 为 false 不生效</td>
+<td align="left">–</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">解释</th>
+<th align="left">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">allowAllCanceled</td>
+<td align="left">（分类图例）是否保留一项不能取消勾选，默认为 false，即最后一项不能取消勾选</td>
+<td align="left">false</td>
+</tr>
+<tr>
+<td align="left">unCheckColor</td>
+<td align="left">未选中时 marker 的颜色</td>
+<td align="left">‘#bfbfbf’</td>
+</tr>
+<tr>
+<td align="left">textStyle</td>
+<td align="left">图例项文本的样式配置</td>
+<td align="left">{fill: ‘#3c3c3c’}</td>
+</tr>
+<tr>
+<td align="left">itemWidth</td>
+<td align="left">图例项的宽度，当图例有很多图例项，并且用户想要这些图例项在同一平面内垂直对齐，此时这个属性可帮用户实现此效果</td>
+<td align="left">–</td>
+</tr>
+<tr>
+<td align="left">itemFormatter</td>
+<td align="left">用于格式化图例每项的文本显示，是个回调函数</td>
+<td align="left">–</td>
+</tr>
+</tbody></table>
+<h2 id="marker"><a href="#marker" class="headerlink" title="marker"></a>marker</h2><p>配置形式是:</p>
+<p>chart.legend(‘x’,{</p>
+<p>​    marker:’type’</p>
+<p>})</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>type</strong></th>
+<th align="left"><strong>样式</strong></th>
+<th align="left"><strong>是否支持 HTML</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">‘circle’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*JMXTSrJ8C5EAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td align="left">‘square’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TjaMQbS6dOEAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td align="left">‘bowtie’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*sySwT7tOwq4AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘diamond’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*3fjORIEQExcAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hexagon’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TkmrRZ7IYzAAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘triangle’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*R0OCS6z_FuUAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘triangle-down’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ieFFTadrXS0AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘cross’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*kKyZQKEop80AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘tick’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*VMP6SYj4DiAAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘plus’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*z4-OQY5NNV4AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hyphen’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*JX6QRoleT_gAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘line’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*yPZ8TI--rm8AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">hollowCircle</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*6dPmQL7ko4MAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowSquare’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*2sfDR48-z60AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowBowtie’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*vAYUT4s9dkwAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowDiamond’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*h1pTTLjppRQAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowHexagon’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*II28TZCn_IIAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowTriangle’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*wf_AQaNchFcAAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+<tr>
+<td align="left">‘hollowTriangle-down’</td>
+<td align="left"><img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*b3TVR5DomK0AAAAAAAAAAABkARQnAQ" alt="img"></td>
+<td align="left">否</td>
+</tr>
+</tbody></table>
+<h1 id="几何标记-Geometry"><a href="#几何标记-Geometry" class="headerlink" title="几何标记 Geometry"></a>几何标记 Geometry</h1><h1 id="提示信息-Tooltip"><a href="#提示信息-Tooltip" class="headerlink" title="提示信息 Tooltip"></a>提示信息 Tooltip</h1><p>提示信息 (Tooltip)，是指当鼠标悬停在图形上时，以提示框的形式展示该点的数据，比如该点的值，数据单位等，帮助用户快速获取图形的关键数据</p>
+<p><img src="/2020/04/22/AntvG2/image-20200304210242960.png" alt="image-20200304210242960"></p>
+<p><strong>G2 提供了三个层级的 Tooltip 开关配置</strong>：</p>
+<ol>
+<li>Chart：控制整个图表的 tooltip 开关，当 <code>chart.tooltip(false)</code> 将 tooltip 关闭时，view 及 geometry 上的 tooltip 配置均不生效，整个图表 tooltip 关闭。</li>
+<li>View：控制当前 View 的 tooltip 开关，当 <code>view.tooltip(false)</code> 将 tooltip 关闭时，当前 view tooltip 将被关闭，其下所有 Geometry 几何标记的 tooltip 配置均不生效。</li>
+<li>Geometry：控制当前 Geometry 几何标记的 tooltip 开关，当 <code>geometry.tooltip(false)</code> 将 tooltip 关闭时，该 Geometry 的数据将不展示在 tooltip 内容框中</li>
+</ol>
+<p>开关配置是开关配置，但是要配置内置属性还是要chart才能配置，也可以在gem.tooltip后配置，但不能在view上配置</p>
+<h2 id="内置属性"><a href="#内置属性" class="headerlink" title="内置属性"></a>内置属性</h2><p>常用的属性，还有很多其他的内置属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>showCrosshairs</td>
+<td>是否展示tooltip辅助线,布尔类型</td>
+</tr>
+<tr>
+<td>showMarkers</td>
+<td>展示当前数据点的位置，布尔类型</td>
+</tr>
+<tr>
+<td>shared</td>
+<td>设置 tooltip 只展示单条数据，布尔类型</td>
+</tr>
+<tr>
+<td>position</td>
+<td>固定位置展示 tooltip，可设置的值为：<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code></td>
+</tr>
+</tbody></table>
+<h2 id="crosshairs"><a href="#crosshairs" class="headerlink" title="crosshairs"></a><strong>crosshairs</strong></h2><p><strong>crosshairs</strong>: tooltip 辅助线，用于辅助定位数据在坐标系的位置，不同坐标系下的有不同的展现方式。</p>
+<h2 id="marker-1"><a href="#marker-1" class="headerlink" title="marker"></a><strong>marker</strong></h2><p><strong>marker</strong>: 突出当前数据点的位置</p>
+<h1 id="图形标注-Annotation"><a href="#图形标注-Annotation" class="headerlink" title="图形标注 Annotation"></a>图形标注 Annotation</h1><p>图形标注，Annotation，作为 G2 图表的辅助元素，主要用于在图表上标识额外的标记注解</p>
+<h2 id="图表标注类型"><a href="#图表标注类型" class="headerlink" title="图表标注类型"></a>图表标注类型</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>类型</strong></th>
+<th align="left"><strong>描述</strong></th>
+<th align="left"><strong>配置语法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">arc</td>
+<td align="left">辅助弧线，只在<strong>极坐标系</strong>下生效。常用于绘制仪表盘。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*SccqSpP2hG4AAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().arc({})</code></td>
+</tr>
+<tr>
+<td align="left">image</td>
+<td align="left">辅助图片，在图表上添加辅助图片。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*KYTbSbvRKHQAAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().image({})</code></td>
+</tr>
+<tr>
+<td align="left">line</td>
+<td align="left">辅助线（可带文本），例如表示平均值或者预期分布的直线。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*hd7PQ4z_JS8AAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().line({})</code></td>
+</tr>
+<tr>
+<td align="left">text</td>
+<td align="left">辅助文本，指定位置添加文本说明。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*PdjoSrdEhnwAAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().text({})</code></td>
+</tr>
+<tr>
+<td align="left">region</td>
+<td align="left">辅助框，框选一段图区，设置背景、边框等。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*VEOZR5rXpqMAAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().region({})</code></td>
+</tr>
+<tr>
+<td align="left">regionFilter</td>
+<td align="left">区域着色，将图表中位于矩形选区中的图形元素提取出来，重新着色。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*cp2jSJfeJDYAAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().regionFilter({})</code></td>
+</tr>
+<tr>
+<td align="left">dataMarker</td>
+<td align="left">特殊数据点标注，多用于折线图和面积图。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*h-e2TLivyI4AAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().dataMarker({})</code></td>
+</tr>
+<tr>
+<td align="left">dataRegion</td>
+<td align="left">特殊数据区间标注，多用于折线图和面积图。<img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*NHbSRKacUesAAAAAAAAAAABkARQnAQ" alt="image.png"></td>
+<td align="left"><code>chart.annotation().dataRegion({})</code></td>
+</tr>
+</tbody></table>
+<h1 id="交互interaction"><a href="#交互interaction" class="headerlink" title="交互interaction"></a>交互interaction</h1><p>v4版本更新的交互功能，非常方便</p>
+<h2 id="内置的交互"><a href="#内置的交互" class="headerlink" title="内置的交互"></a>内置的交互</h2><ul>
+<li><strong>tooltip</strong>：鼠标在 chart 上移动时显示提示信息</li>
+<li>legend-active：鼠标移动到图例选项时，图例项高亮，对应的图形高亮</li>
+<li>legend-filter：分类图例的勾选</li>
+<li>continuous-filter: 连续图例的过滤</li>
+</ul>
+<p>可以通过 Chart 上的配置项 defaultInteractions 更改内置的交互</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new Chart(&#123;</span><br><span class="line">	container:&#39;c1&#39;,</span><br><span class="line">	autoFit:true,</span><br><span class="line">	height:300,</span><br><span class="line">	defaultInteractions:[&#39;tooltip&#39;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置交互"><a href="#配置交互" class="headerlink" title="配置交互"></a>配置交互</h2><p>有两个额外的接口来增加交互或者删除交互</p>
+<ul>
+<li>chart.interaction(name, [cfg]) 添加或者修改交互,name为<strong>所有交互</strong>列表里面的，cfg为自定义的效果，不然就是默认效果</li>
+<li>chart.removeInteraction(name) 移除交互</li>
+</ul>
+<h2 id="所有交互"><a href="#所有交互" class="headerlink" title="所有交互"></a>所有交互</h2><table>
+<thead>
+<tr>
+<th>name</th>
+<th align="center">定义</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tooltip</td>
+<td align="center">控制 Tooltip 的显示隐藏</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155258712.png" alt></td>
+</tr>
+<tr>
+<td>active-region</td>
+<td align="center">鼠标在画布上移动时对应位置的分类出现背景框</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155428723.png" alt="image-20200303155428723"></td>
+</tr>
+<tr>
+<td>element-active</td>
+<td align="center">鼠标移入图表元素（柱状图的柱子、点图的点等）时触发 active</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155511610.png" alt="image-20200303155511610"></td>
+</tr>
+<tr>
+<td>element-selected</td>
+<td align="center">点击选中图表元素、再次点击取消，允许多选</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155637839.png" alt="image-20200303155637839"></td>
+</tr>
+<tr>
+<td>element-single-selected</td>
+<td align="center">单选图表元素，下次点击允许取消</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155736543.png" alt="image-20200303155736543"></td>
+</tr>
+<tr>
+<td>element-highlight</td>
+<td align="center">图表元素的高亮，是一部分图表元素高亮，另一部分变暗</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155813669.png" alt="image-20200303155813669"></td>
+</tr>
+<tr>
+<td>element-highlight-by-x</td>
+<td align="center">高亮 x 值相同的 element，适用于分组的场景</td>
+<td><img src="/2020/04/22/AntvG2/C:%5CUsers%5CHUAWEI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200303155855971.png" alt="image-20200303155855971"></td>
+</tr>
+<tr>
+<td>element-highlight-by-color</td>
+<td align="center">高亮所有同颜色的 element，适用于层叠的场景</td>
+<td></td>
+</tr>
+<tr>
+<td>legend-highlight</td>
+<td align="center">图例项高亮，对应的图表元素也高亮</td>
+<td></td>
+</tr>
+<tr>
+<td>legend-filter</td>
+<td align="center">分类图例的数据过滤</td>
+<td></td>
+</tr>
+<tr>
+<td>legend-visible-filter</td>
+<td align="center">分类图例的图形过滤，点击图例对应的图形隐藏/显示，这个交互不会引起坐标轴的变化</td>
+<td></td>
+</tr>
+<tr>
+<td>brush</td>
+<td align="center">框选过滤图形</td>
+<td></td>
+</tr>
+<tr>
+<td>element-list-highlight</td>
+<td align="center">鼠标触发图表元素高亮，同时对应的列表组件（图例、坐标轴文本）都高亮</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="视图View"><a href="#视图View" class="headerlink" title="视图View"></a>视图View</h1><h1 id="自定义Shape"><a href="#自定义Shape" class="headerlink" title="自定义Shape"></a>自定义Shape</h1>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chart图标的组成"><span class="toc-number">1.</span> <span class="toc-text">Chart图标的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chart图表布局"><span class="toc-number">2.</span> <span class="toc-text">Chart图表布局</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Attribute-图形属性"><span class="toc-number">3.</span> <span class="toc-text">Attribute 图形属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#size"><span class="toc-number">3.1.</span> <span class="toc-text">size</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Guide辅助元素"><span class="toc-number">4.</span> <span class="toc-text">Guide辅助元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标轴axis"><span class="toc-number">5.</span> <span class="toc-text">坐标轴axis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标系coordinate"><span class="toc-number">6.</span> <span class="toc-text">坐标系coordinate</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#坐标系类型"><span class="toc-number">6.1.</span> <span class="toc-text">坐标系类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#极坐标系"><span class="toc-number">6.2.</span> <span class="toc-text">极坐标系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#度量Scale"><span class="toc-number">7.</span> <span class="toc-text">度量Scale</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图例-Legend"><span class="toc-number">8.</span> <span class="toc-text">图例 Legend</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#marker"><span class="toc-number">8.1.</span> <span class="toc-text">marker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#几何标记-Geometry"><span class="toc-number">9.</span> <span class="toc-text">几何标记 Geometry</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#提示信息-Tooltip"><span class="toc-number">10.</span> <span class="toc-text">提示信息 Tooltip</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内置属性"><span class="toc-number">10.1.</span> <span class="toc-text">内置属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crosshairs"><span class="toc-number">10.2.</span> <span class="toc-text">crosshairs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#marker-1"><span class="toc-number">10.3.</span> <span class="toc-text">marker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图形标注-Annotation"><span class="toc-number">11.</span> <span class="toc-text">图形标注 Annotation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#图表标注类型"><span class="toc-number">11.1.</span> <span class="toc-text">图表标注类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#交互interaction"><span class="toc-number">12.</span> <span class="toc-text">交互interaction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内置的交互"><span class="toc-number">12.1.</span> <span class="toc-text">内置的交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置交互"><span class="toc-number">12.2.</span> <span class="toc-text">配置交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#所有交互"><span class="toc-number">12.3.</span> <span class="toc-text">所有交互</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#视图View"><span class="toc-number">13.</span> <span class="toc-text">视图View</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义Shape"><span class="toc-number">14.</span> <span class="toc-text">自定义Shape</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/04/22/AntvG2/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/04/22/AntvG2/&text=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/04/22/AntvG2/&is_video=false&description=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AntvG2总结&body=Check out this article: https://hardingyang.github.io/2020/04/22/AntvG2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/04/22/AntvG2/&title=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/04/22/AntvG2/&name=AntvG2总结&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/04/22/AntvG2/&t=AntvG2总结" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2020
+    Jenkooo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3611d43b4ebdcc59c13f6739c83aac46";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
