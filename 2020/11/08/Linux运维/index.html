@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Linux连接管理及优化1.1 Linux连接的原理在最真实的开发环境中，我们是触碰不到服务器的，所以很多的时候我们只能通过远程连接的方式去进行连接，一般都是通过SSH来连接远程Linux系统，那么具体连接Linux系统的原理又是什么呢？ 整个连接的系统分为客户端和服务器端，服务器端的就是Linux系统，客户端就是SSH连接软件，他们通过SSH协议的方式进行连接，首先服务器端开启一个守护进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维">
+<meta property="og:url" content="https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/index.html">
+<meta property="og:site_name" content="Jenkooo">
+<meta property="og:description" content="1. Linux连接管理及优化1.1 Linux连接的原理在最真实的开发环境中，我们是触碰不到服务器的，所以很多的时候我们只能通过远程连接的方式去进行连接，一般都是通过SSH来连接远程Linux系统，那么具体连接Linux系统的原理又是什么呢？ 整个连接的系统分为客户端和服务器端，服务器端的就是Linux系统，客户端就是SSH连接软件，他们通过SSH协议的方式进行连接，首先服务器端开启一个守护进程">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-08T14:53:46.510Z">
+<meta property="article:modified_time" content="2020-11-08T15:05:27.407Z">
+<meta property="article:author" content="Jenkooo">
+<meta property="article:tag" content="运维">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux运维</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/08/%E5%89%8D%E7%AB%AF%E8%AE%B0%E5%BD%95/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&text=Linux运维" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&is_video=false&description=Linux运维" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux运维&body=Check out this article: https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&name=Linux运维&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&t=Linux运维" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Linux连接管理及优化"><span class="toc-number">1.</span> <span class="toc-text">1. Linux连接管理及优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Linux连接的原理"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Linux连接的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-SSH远程连接故障排查步骤"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 SSH远程连接故障排查步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Linux指令"><span class="toc-number">2.</span> <span class="toc-text">2. Linux指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-网站流量度量术语"><span class="toc-number">3.</span> <span class="toc-text">3.网站流量度量术语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Nginx服务应用"><span class="toc-number">4.</span> <span class="toc-text">4. Nginx服务应用</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux运维
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jenkooo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-08T14:53:46.510Z" itemprop="datePublished">2020-11-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="tag-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="1-Linux连接管理及优化"><a href="#1-Linux连接管理及优化" class="headerlink" title="1. Linux连接管理及优化"></a>1. Linux连接管理及优化</h1><h2 id="1-1-Linux连接的原理"><a href="#1-1-Linux连接的原理" class="headerlink" title="1.1 Linux连接的原理"></a>1.1 Linux连接的原理</h2><p>在最真实的开发环境中，我们是触碰不到服务器的，所以很多的时候我们只能通过远程连接的方式去进行连接，一般都是通过SSH来连接远程Linux系统，那么具体连接Linux系统的原理又是什么呢？</p>
+<p>整个连接的系统分为客户端和服务器端，服务器端的就是Linux系统，客户端就是SSH连接软件，他们通过<strong>SSH协议</strong>的方式进行连接，首先服务器端开启一个守护进程，SSH服务器进程，名字叫sshd，负责实时监听远程是否有客户端进行连接，并进行请求处理返回响应，所以这种SSH服务器进程都是开机自启动的进程。</p>
+<p><strong>SSH协议</strong>：是专为远程登录会话和其他网络服务提供的安全性协议，利用这种协议在传输的过程中会采用加密的方式进行传输，保证信息不回泄露，利用SSH协议可以有效的防止远程管理过程中的信息泄露，在实际的生产环境中，企业也会更加多的使用SSH协议来进行远程连接Linux服务器</p>
+<h2 id="1-2-SSH远程连接故障排查步骤"><a href="#1-2-SSH远程连接故障排查步骤" class="headerlink" title="1.2 SSH远程连接故障排查步骤"></a>1.2 SSH远程连接故障排查步骤</h2><ol>
+<li>首先检查链路层是否通畅    ping 10.0.0.1 的方式</li>
+<li>链路层没问题再检查地址端口是否开启，一般的sshd进程都是在22端口开启  nmap 10.0.0.1 -p  22 </li>
+<li>看是否有防火墙拦截，查看/etc/init.d/iptables ，如果要关闭防火墙则是 /etc/init.d/iptables stop </li>
+</ol>
+<h1 id="2-Linux指令"><a href="#2-Linux指令" class="headerlink" title="2. Linux指令"></a>2. Linux指令</h1><ul>
+<li>查看系统版本信息</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">cat /etc/radhat<span class="literal">-release</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看内核Kernel的版本号,多少位系统</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">//uname 主要打印计算机硬件信息</span><br><span class="line">uname <span class="literal">-r</span></span><br><span class="line">uname <span class="literal">-m</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加普通用户</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">useradd oldboy //添加用户</span><br><span class="line">passwd oldboy  //设置密码,填写两次密码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置开机自启动任务的命令</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ntsysv  //会弹出窗口进行设置</span><br><span class="line">setup	//弹出界面，再选择system servuce 再设置开机服务</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>防火墙部分</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">centos7 查看防火墙是否开启</span><br><span class="line">systemctl status firewalld.service</span><br><span class="line"></span><br><span class="line">//仅对本机开机关闭防火墙，重启后自动启动防火墙</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">//永久关闭防火墙</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看文件的头10行和尾10行</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">head console.txt  前<span class="number">10</span>行</span><br><span class="line"><span class="literal">-q</span> 隐藏文件名</span><br><span class="line"><span class="literal">-v</span> 显示文件名</span><br><span class="line"><span class="literal">-c</span>&lt;数目&gt; 显示的字节数。</span><br><span class="line"><span class="literal">-n</span>&lt;行数&gt; 显示的行数。</span><br><span class="line"></span><br><span class="line">---------------------------------------</span><br><span class="line"></span><br><span class="line">tail console.txt  尾<span class="number">10</span>行	</span><br><span class="line"><span class="operator">-f</span> 循环读取</span><br><span class="line"><span class="literal">-q</span> 不显示处理信息</span><br><span class="line"><span class="literal">-v</span> 显示详细的处理信息</span><br><span class="line"><span class="literal">-c</span>&lt;数目&gt; 显示的字节数</span><br><span class="line"><span class="literal">-n</span>&lt;行数&gt; 显示文件的尾部 n 行内容</span><br><span class="line">-<span class="literal">-pid</span>=PID 与<span class="operator">-f</span>合用,表示在进程ID,PID死掉之后结束</span><br><span class="line"><span class="literal">-q</span>, -<span class="literal">-quiet</span>, -<span class="literal">-silent</span> 从不输出给出文件名的首部</span><br><span class="line"><span class="literal">-s</span>, -<span class="literal">-sleep</span><span class="literal">-interval</span>=S 与<span class="operator">-f</span>合用,表示在每次反复的间隔休眠S秒</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>复制整个目录到另外一个文件</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">cp <span class="literal">-r</span> apche<span class="literal">-tomcat</span><span class="literal">-8</span>.<span class="number">5</span>/  tomcat1     表示的含义是：复制apche<span class="literal">-tomcat</span><span class="literal">-8</span>.<span class="number">5</span>目录下所有文件到 tomcat1文件夹，如果tomcat1文件夹不存在，则会自动创建一个</span><br><span class="line"></span><br><span class="line"><span class="literal">-r</span>：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>控制linux系统资源的指令</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ulimit 是一个计算机命令，用于shell启动进程所占用的资源，可用于修改系统资源限制</span><br><span class="line"></span><br><span class="line">ulimit <span class="literal">-n</span> 查看最多的打开的文件描述个数</span><br><span class="line">ulimit <span class="literal">-u</span> 查看最大用户进程数</span><br><span class="line"></span><br><span class="line">临时修改最大用户进程数的方法</span><br><span class="line">ulimit <span class="literal">-u</span> <span class="number">65535</span> 既可，当重启后自动失效，永久修改的方式是修改/etc/security/limits.conf配置文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="3-网站流量度量术语"><a href="#3-网站流量度量术语" class="headerlink" title="3.网站流量度量术语"></a>3.网站流量度量术语</h1><ul>
+<li>IP</li>
+</ul>
+<p>这里的IP指的是独立IP对某个网站的访问次数，IP流量即可以大概率的换算为有多少用户在访问这个网站，一般统计的次数是一天之内的IP数，但是由于存在NAT路由转发机制，所有一个局域网内的所有用户对次网站的访问都是一个IP</p>
+<ul>
+<li>PV</li>
+</ul>
+<p>page View ，页面浏览量，可以理解为的是页面的点击量，不管IP是否相同，客户端是否相同，只要该页面被点击了，那么就会被计算成PV量，这里需要注意的是PV量并不是网站的用户量，因为一个用户可能点击此页面多次</p>
+<ul>
+<li>UV</li>
+</ul>
+<p>Unique Visitor，同一个客户端访问网站被计算成一个访客，UV的统计，一般是使用Cookie作用统计的手段</p>
+<h1 id="4-Nginx服务应用"><a href="#4-Nginx服务应用" class="headerlink" title="4. Nginx服务应用"></a>4. Nginx服务应用</h1><p>Nginx是一个开源的，支持高性能，高并发的www服务和代理服务软件</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Linux连接管理及优化"><span class="toc-number">1.</span> <span class="toc-text">1. Linux连接管理及优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Linux连接的原理"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Linux连接的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-SSH远程连接故障排查步骤"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 SSH远程连接故障排查步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Linux指令"><span class="toc-number">2.</span> <span class="toc-text">2. Linux指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-网站流量度量术语"><span class="toc-number">3.</span> <span class="toc-text">3.网站流量度量术语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Nginx服务应用"><span class="toc-number">4.</span> <span class="toc-text">4. Nginx服务应用</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&text=Linux运维" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&is_video=false&description=Linux运维" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux运维&body=Check out this article: https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&title=Linux运维" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&name=Linux运维&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hardingyang.github.io/2020/11/08/Linux%E8%BF%90%E7%BB%B4/&t=Linux运维" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2020
+    Jenkooo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3611d43b4ebdcc59c13f6739c83aac46";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
